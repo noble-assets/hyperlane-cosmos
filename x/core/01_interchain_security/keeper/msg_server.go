@@ -129,7 +129,7 @@ func (m msgServer) CreateMessageIdMultisigIsm(ctx context.Context, req *types.Ms
 		return nil, errors.Wrap(types.ErrInvalidMultisigConfiguration, err.Error())
 	}
 
-	if err = m.k.isms.Set(ctx, ismId.GetInternalId(), &newIsm); err != nil {
+	if err = m.k.SetISM(ctx, ismId, &newIsm); err != nil {
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
 
@@ -153,7 +153,7 @@ func (m msgServer) CreateMerkleRootMultisigIsm(ctx context.Context, req *types.M
 		return nil, errors.Wrap(types.ErrInvalidMultisigConfiguration, err.Error())
 	}
 
-	if err = m.k.isms.Set(ctx, ismId.GetInternalId(), &newIsm); err != nil {
+	if err = m.k.SetISM(ctx, ismId, &newIsm); err != nil {
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
 
@@ -173,7 +173,7 @@ func (m msgServer) CreateNoopIsm(ctx context.Context, ism *types.MsgCreateNoopIs
 
 	// no validation needed, as there are no params to this ism
 
-	if err = m.k.isms.Set(ctx, ismId.GetInternalId(), &newIsm); err != nil {
+	if err = m.k.SetISM(ctx, ismId, &newIsm); err != nil {
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
 

@@ -42,6 +42,12 @@ service Query {
       returns (QueryVerifyDryRunResponse) {
     option (google.api.http).get = "/hyperlane/v1/verify_dry_run";
   }
+
+  // RegisteredISMs ...
+  rpc RegisteredISMs(QueryRegisteredISMs)
+      returns (QueryRegisteredISMsResponse) {
+    option (google.api.http).get = "/hyperlane/v1/registered_isms";
+  }
 }
 
 // QueryMailboxesRequest ...
@@ -91,3 +97,9 @@ message QueryVerifyDryRunRequest {
 
 // QueryVerifyDryRunResponse ...
 message QueryVerifyDryRunResponse { bool verified = 1; }
+
+// QueryRegisteredISMs ...
+message QueryRegisteredISMs {}
+
+// QueryRegisteredISMsResponse ...
+message QueryRegisteredISMsResponse { repeated uint32 ids = 1; }

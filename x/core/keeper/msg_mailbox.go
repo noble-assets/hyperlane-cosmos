@@ -10,49 +10,8 @@ import (
 )
 
 func (ms msgServer) CreateMailbox(ctx context.Context, req *types.MsgCreateMailbox) (*types.MsgCreateMailboxResponse, error) {
-	// Check ism existence
-	if err := ms.k.AssertIsmExists(ctx, req.DefaultIsm); err != nil {
-		return nil, err
-	}
-
-	// Check default hook is valid if set
-	if req.DefaultHook != nil {
-		if err := ms.k.AssertPostDispatchHookExists(ctx, *req.DefaultHook); err != nil {
-			return nil, err
-		}
-	}
-
-	// Check required hook is valid if set.
-	// The "required" means that this hook can not be overridden by the message dispatcher
-	if req.RequiredHook != nil {
-		if err := ms.k.AssertPostDispatchHookExists(ctx, *req.RequiredHook); err != nil {
-			return nil, err
-		}
-	}
-
-	mailboxCount, err := ms.k.MailboxesSequence.Next(ctx)
+	prefixedId, err := ms.k.CreateMailbox(ctx, req)
 	if err != nil {
-		return nil, err
-	}
-
-	identifier := [20]byte{}
-	copy(identifier[:], types.ModuleName)
-
-	// generate a new unique id that is compliant with the way the router generates ids
-	prefixedId := util.GenerateHexAddress(identifier, uint32(types.ModuleId), mailboxCount)
-
-	newMailbox := types.Mailbox{
-		Id:              prefixedId,
-		Owner:           req.Owner,
-		MessageSent:     0,
-		MessageReceived: 0,
-		DefaultIsm:      req.DefaultIsm,
-		DefaultHook:     req.DefaultHook,
-		RequiredHook:    req.RequiredHook,
-		LocalDomain:     req.LocalDomain,
-	}
-
-	if err = ms.k.Mailboxes.Set(ctx, prefixedId.GetInternalId(), newMailbox); err != nil {
 		return nil, err
 	}
 

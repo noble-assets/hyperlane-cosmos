@@ -5,6 +5,7 @@ import (
 
 	"cosmossdk.io/collections"
 	storetypes "cosmossdk.io/core/store"
+	"cosmossdk.io/errors"
 
 	"github.com/bcp-innovations/hyperlane-cosmos/util"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/core/01_interchain_security/types"
@@ -44,6 +45,14 @@ func NewKeeper(cdc codec.BinaryCodec, storeService storetypes.KVStoreService) Ke
 	k.schema = schema
 
 	return k
+}
+
+func (k *Keeper) SetISM(ctx context.Context, ismId util.HexAddress, ism types.HyperlaneInterchainSecurityModule) error {
+	if err := k.isms.Set(ctx, ismId.GetInternalId(), ism); err != nil {
+		return errors.Wrap(types.ErrUnexpectedError, err.Error())
+	}
+
+	return nil
 }
 
 func (k *Keeper) SetCoreKeeper(coreKeeper types.CoreKeeper) {

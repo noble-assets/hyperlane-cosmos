@@ -101,3 +101,9 @@ func (qs queryServer) VerifyDryRun(ctx context.Context, req *types.QueryVerifyDr
 		Verified: verified,
 	}, err
 }
+
+func (qs queryServer) RegisteredISMs(_ context.Context, _ *types.QueryRegisteredISMs) (*types.QueryRegisteredISMsResponse, error) {
+	return &types.QueryRegisteredISMsResponse{
+		Ids: qs.k.IsmRouter().GetModuleIds(),
+	}, nil
+}
