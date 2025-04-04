@@ -597,6 +597,170 @@ func (m *QueryRegisteredISMsResponse) GetIds() []uint32 {
 	return nil
 }
 
+// QueryRegisteredHooks ...
+type QueryRegisteredHooks struct {
+}
+
+func (m *QueryRegisteredHooks) Reset()         { *m = QueryRegisteredHooks{} }
+func (m *QueryRegisteredHooks) String() string { return proto.CompactTextString(m) }
+func (*QueryRegisteredHooks) ProtoMessage()    {}
+func (*QueryRegisteredHooks) Descriptor() ([]byte, []int) {
+	return fileDescriptor_312c522f209452f6, []int{12}
+}
+func (m *QueryRegisteredHooks) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryRegisteredHooks) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryRegisteredHooks.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryRegisteredHooks) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryRegisteredHooks.Merge(m, src)
+}
+func (m *QueryRegisteredHooks) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryRegisteredHooks) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryRegisteredHooks.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryRegisteredHooks proto.InternalMessageInfo
+
+// QueryRegisteredHooksResponse ...
+type QueryRegisteredHooksResponse struct {
+	Ids []uint32 `protobuf:"varint,1,rep,packed,name=ids,proto3" json:"ids,omitempty"`
+}
+
+func (m *QueryRegisteredHooksResponse) Reset()         { *m = QueryRegisteredHooksResponse{} }
+func (m *QueryRegisteredHooksResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryRegisteredHooksResponse) ProtoMessage()    {}
+func (*QueryRegisteredHooksResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_312c522f209452f6, []int{13}
+}
+func (m *QueryRegisteredHooksResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryRegisteredHooksResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryRegisteredHooksResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryRegisteredHooksResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryRegisteredHooksResponse.Merge(m, src)
+}
+func (m *QueryRegisteredHooksResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryRegisteredHooksResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryRegisteredHooksResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryRegisteredHooksResponse proto.InternalMessageInfo
+
+func (m *QueryRegisteredHooksResponse) GetIds() []uint32 {
+	if m != nil {
+		return m.Ids
+	}
+	return nil
+}
+
+// QueryRegisteredApps ...
+type QueryRegisteredApps struct {
+}
+
+func (m *QueryRegisteredApps) Reset()         { *m = QueryRegisteredApps{} }
+func (m *QueryRegisteredApps) String() string { return proto.CompactTextString(m) }
+func (*QueryRegisteredApps) ProtoMessage()    {}
+func (*QueryRegisteredApps) Descriptor() ([]byte, []int) {
+	return fileDescriptor_312c522f209452f6, []int{14}
+}
+func (m *QueryRegisteredApps) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryRegisteredApps) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryRegisteredApps.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryRegisteredApps) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryRegisteredApps.Merge(m, src)
+}
+func (m *QueryRegisteredApps) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryRegisteredApps) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryRegisteredApps.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryRegisteredApps proto.InternalMessageInfo
+
+// QueryRegisteredAppsResponse ...
+type QueryRegisteredAppsResponse struct {
+	Ids []uint32 `protobuf:"varint,1,rep,packed,name=ids,proto3" json:"ids,omitempty"`
+}
+
+func (m *QueryRegisteredAppsResponse) Reset()         { *m = QueryRegisteredAppsResponse{} }
+func (m *QueryRegisteredAppsResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryRegisteredAppsResponse) ProtoMessage()    {}
+func (*QueryRegisteredAppsResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_312c522f209452f6, []int{15}
+}
+func (m *QueryRegisteredAppsResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryRegisteredAppsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryRegisteredAppsResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryRegisteredAppsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryRegisteredAppsResponse.Merge(m, src)
+}
+func (m *QueryRegisteredAppsResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryRegisteredAppsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryRegisteredAppsResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryRegisteredAppsResponse proto.InternalMessageInfo
+
+func (m *QueryRegisteredAppsResponse) GetIds() []uint32 {
+	if m != nil {
+		return m.Ids
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryMailboxesRequest)(nil), "hyperlane.core.v1.QueryMailboxesRequest")
 	proto.RegisterType((*QueryMailboxesResponse)(nil), "hyperlane.core.v1.QueryMailboxesResponse")
@@ -610,61 +774,70 @@ func init() {
 	proto.RegisterType((*QueryVerifyDryRunResponse)(nil), "hyperlane.core.v1.QueryVerifyDryRunResponse")
 	proto.RegisterType((*QueryRegisteredISMs)(nil), "hyperlane.core.v1.QueryRegisteredISMs")
 	proto.RegisterType((*QueryRegisteredISMsResponse)(nil), "hyperlane.core.v1.QueryRegisteredISMsResponse")
+	proto.RegisterType((*QueryRegisteredHooks)(nil), "hyperlane.core.v1.QueryRegisteredHooks")
+	proto.RegisterType((*QueryRegisteredHooksResponse)(nil), "hyperlane.core.v1.QueryRegisteredHooksResponse")
+	proto.RegisterType((*QueryRegisteredApps)(nil), "hyperlane.core.v1.QueryRegisteredApps")
+	proto.RegisterType((*QueryRegisteredAppsResponse)(nil), "hyperlane.core.v1.QueryRegisteredAppsResponse")
 }
 
 func init() { proto.RegisterFile("hyperlane/core/v1/query.proto", fileDescriptor_312c522f209452f6) }
 
 var fileDescriptor_312c522f209452f6 = []byte{
-	// 783 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x95, 0xcd, 0x6a, 0xdb, 0x4a,
-	0x14, 0xc7, 0x2d, 0x87, 0x7c, 0x68, 0x92, 0x1b, 0x6e, 0xe6, 0x26, 0xf7, 0x3a, 0xba, 0x8e, 0x13,
-	0x44, 0xf3, 0xd9, 0x46, 0x83, 0x1d, 0xda, 0x06, 0xba, 0x28, 0xa4, 0x21, 0xc5, 0x8b, 0x40, 0xab,
-	0x42, 0x0b, 0xdd, 0x98, 0xb1, 0x35, 0x55, 0x06, 0x2c, 0x8d, 0xa2, 0x91, 0x4d, 0x4c, 0x08, 0xb4,
-	0x7d, 0x81, 0x16, 0xba, 0x2b, 0x74, 0x5b, 0xba, 0xec, 0x63, 0x64, 0x19, 0xe8, 0xa6, 0xab, 0x52,
-	0x92, 0x42, 0x97, 0x7d, 0x85, 0xa2, 0xd1, 0x48, 0xb2, 0x13, 0xa9, 0xf1, 0xc6, 0xcc, 0x9c, 0x39,
-	0xff, 0x39, 0xbf, 0x73, 0x74, 0x8e, 0x07, 0x2c, 0x1c, 0xf4, 0x3c, 0xe2, 0xb7, 0xb1, 0x4b, 0x50,
-	0x8b, 0xf9, 0x04, 0x75, 0xab, 0xe8, 0xb0, 0x43, 0xfc, 0x9e, 0xe1, 0xf9, 0x2c, 0x60, 0x70, 0x26,
-	0x39, 0x36, 0xc2, 0x63, 0xa3, 0x5b, 0xd5, 0x36, 0x5a, 0x8c, 0x3b, 0x8c, 0xa3, 0x26, 0xe6, 0x24,
-	0xf2, 0x45, 0xdd, 0x6a, 0x93, 0x04, 0xb8, 0x8a, 0x3c, 0x6c, 0x53, 0x17, 0x07, 0x94, 0xb9, 0x91,
-	0x5c, 0xcb, 0xb8, 0x3d, 0xe8, 0x79, 0x84, 0xcb, 0xe3, 0xb2, 0xcd, 0x98, 0xdd, 0x26, 0x08, 0x7b,
-	0x14, 0x61, 0xd7, 0x65, 0x81, 0xd0, 0xc6, 0xa7, 0x33, 0xd8, 0xa1, 0x2e, 0x43, 0xe2, 0x57, 0x9a,
-	0x66, 0x6d, 0x66, 0x33, 0xb1, 0x44, 0xe1, 0x2a, 0xb2, 0xea, 0x0d, 0x30, 0xf7, 0x38, 0xe4, 0xd8,
-	0xc7, 0xb4, 0xdd, 0x64, 0x47, 0x84, 0x9b, 0xe4, 0xb0, 0x43, 0x78, 0x00, 0xf7, 0x00, 0x48, 0x91,
-	0x4a, 0xca, 0x92, 0xb2, 0x36, 0x59, 0x5b, 0x31, 0x22, 0x7e, 0x23, 0xe4, 0x37, 0xa2, 0x5c, 0x25,
-	0xbf, 0xf1, 0x08, 0xdb, 0x44, 0x6a, 0xcd, 0x3e, 0xa5, 0xfe, 0x51, 0x01, 0xff, 0x5e, 0x8e, 0xc0,
-	0x3d, 0xe6, 0x72, 0x02, 0x1f, 0x00, 0xd5, 0x89, 0x8d, 0x25, 0x65, 0x69, 0x64, 0x6d, 0xb2, 0xa6,
-	0x19, 0x57, 0x8a, 0x66, 0x48, 0xe1, 0x8e, 0x7a, 0xfa, 0x6d, 0xb1, 0xf0, 0xe9, 0xe7, 0xe7, 0x0d,
-	0xc5, 0x4c, 0x75, 0xf0, 0xe1, 0x00, 0x67, 0x51, 0x70, 0xae, 0x5e, 0xcb, 0x19, 0x11, 0x0c, 0x80,
-	0x2e, 0x83, 0x7f, 0xfa, 0x39, 0xe3, 0x3a, 0x4c, 0x83, 0x22, 0xb5, 0x44, 0xfe, 0xaa, 0x59, 0xa4,
-	0x96, 0xfe, 0x0c, 0xcc, 0x0e, 0xba, 0xc9, 0x64, 0xee, 0x83, 0x71, 0x09, 0x25, 0x8b, 0x35, 0x64,
-	0x2a, 0xb1, 0x4a, 0xdf, 0x93, 0x5f, 0x62, 0x97, 0xb4, 0x69, 0x97, 0xf8, 0xc4, 0xca, 0x21, 0x80,
-	0x0b, 0x00, 0x38, 0x84, 0x73, 0x6c, 0x93, 0x06, 0xb5, 0x44, 0xc6, 0xaa, 0xa9, 0x4a, 0x4b, 0xdd,
-	0xd2, 0xef, 0xc8, 0x7a, 0xf7, 0xdd, 0x23, 0x11, 0xcb, 0x40, 0xb5, 0x62, 0xa3, 0xb8, 0x6f, 0xc2,
-	0x4c, 0x0d, 0xfa, 0x36, 0x28, 0x09, 0x9d, 0x49, 0x5a, 0xd4, 0xa3, 0xc4, 0x0d, 0xea, 0xdc, 0x89,
-	0x11, 0xca, 0x40, 0xf5, 0x63, 0xb3, 0x24, 0x49, 0x0d, 0x7a, 0x0d, 0xcc, 0x67, 0x28, 0x65, 0xd0,
-	0x39, 0x30, 0x46, 0xb9, 0xd3, 0x48, 0x32, 0x18, 0xa5, 0xdc, 0xa9, 0x5b, 0xba, 0x2d, 0xa3, 0x3d,
-	0x25, 0x3e, 0x7d, 0xd1, 0xdb, 0xf5, 0x7b, 0x66, 0xc7, 0x8d, 0xa3, 0x65, 0x4b, 0x60, 0x09, 0x8c,
-	0xcb, 0x2c, 0x65, 0xd2, 0xf1, 0x16, 0x6a, 0x60, 0xc2, 0x21, 0x01, 0xb6, 0x70, 0x80, 0x4b, 0x23,
-	0xe2, 0x28, 0xd9, 0xeb, 0x77, 0x25, 0xdc, 0x60, 0x20, 0x09, 0xa7, 0x81, 0x89, 0x6e, 0x68, 0xa7,
-	0x49, 0x41, 0x92, 0xbd, 0x3e, 0x27, 0xfb, 0xc1, 0x24, 0x36, 0xe5, 0x41, 0x58, 0xa2, 0xfa, 0x93,
-	0x7d, 0xae, 0x23, 0xf0, 0x7f, 0x86, 0x39, 0xb9, 0xf1, 0x6f, 0x30, 0x42, 0xad, 0xa8, 0x9b, 0xff,
-	0x32, 0xc3, 0x65, 0xed, 0xd7, 0x18, 0x18, 0x15, 0x0a, 0xf8, 0x4a, 0x01, 0x6a, 0x32, 0x05, 0x70,
-	0x2d, 0xa3, 0x3f, 0x32, 0x47, 0x51, 0x5b, 0x1f, 0xc2, 0x33, 0x0a, 0xaf, 0x2f, 0xbe, 0xfe, 0xf2,
-	0xe3, 0x5d, 0x71, 0x1e, 0xfe, 0x87, 0xd2, 0x7f, 0x8f, 0x6e, 0x15, 0xa5, 0xe3, 0xf2, 0x52, 0x01,
-	0xe3, 0x52, 0x06, 0x57, 0xae, 0xb9, 0x37, 0x8e, 0xbf, 0x7a, 0xad, 0x9f, 0x8c, 0x7e, 0x43, 0x44,
-	0xaf, 0xc0, 0x72, 0x4e, 0x74, 0x74, 0x4c, 0xad, 0x13, 0xf8, 0x41, 0x01, 0x6a, 0xd2, 0x9c, 0xf9,
-	0x65, 0xb8, 0x3c, 0x07, 0xf9, 0x65, 0xb8, 0xd2, 0xe9, 0xfa, 0x3d, 0x01, 0x72, 0x1b, 0x6e, 0xfd,
-	0x09, 0x04, 0x25, 0xbd, 0x8f, 0x8e, 0xd3, 0x81, 0x3a, 0x81, 0xef, 0x15, 0x30, 0xd5, 0xdf, 0xca,
-	0xf0, 0x66, 0x5e, 0xe0, 0x8c, 0x51, 0xd1, 0x6e, 0x0d, 0xe7, 0x2c, 0x41, 0x91, 0x00, 0x5d, 0x87,
-	0xab, 0x83, 0xa0, 0xc9, 0x6c, 0x35, 0x28, 0x77, 0xd0, 0x71, 0xb2, 0x3d, 0x81, 0x6f, 0x14, 0x30,
-	0xd5, 0xdf, 0xca, 0xf9, 0x70, 0x19, 0x93, 0x95, 0x0f, 0x97, 0x35, 0x1d, 0x79, 0x9f, 0x53, 0x4c,
-	0x48, 0xaf, 0x61, 0xf9, 0xbd, 0x86, 0xdf, 0x71, 0x43, 0xa2, 0xe9, 0xc1, 0x61, 0xc8, 0x6f, 0xac,
-	0x41, 0x3f, 0xcd, 0x18, 0xce, 0x2f, 0x01, 0x5a, 0x16, 0x40, 0x8b, 0x70, 0xe1, 0x72, 0xb5, 0x62,
-	0xef, 0xb0, 0x5c, 0x7c, 0xc7, 0x3c, 0x3d, 0xaf, 0x28, 0x67, 0xe7, 0x15, 0xe5, 0xfb, 0x79, 0x45,
-	0x79, 0x7b, 0x51, 0x29, 0x9c, 0x5d, 0x54, 0x0a, 0x5f, 0x2f, 0x2a, 0x85, 0xe7, 0xdb, 0x36, 0x0d,
-	0x0e, 0x3a, 0x4d, 0xa3, 0xc5, 0x1c, 0xd4, 0x6c, 0x79, 0x9b, 0xd4, 0x75, 0x59, 0x37, 0x7a, 0x38,
-	0xd3, 0x2b, 0x37, 0xe5, 0x23, 0x7d, 0x14, 0xbd, 0xbb, 0xe2, 0xd1, 0x6d, 0x8e, 0x89, 0xe7, 0x72,
-	0xeb, 0x77, 0x00, 0x00, 0x00, 0xff, 0xff, 0x9a, 0xe6, 0x31, 0x8f, 0xf4, 0x07, 0x00, 0x00,
+	// 859 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x8c, 0x96, 0x4f, 0x4f, 0xfc, 0x44,
+	0x18, 0xc7, 0xb7, 0x4b, 0xf8, 0xd3, 0x01, 0x51, 0x46, 0xc0, 0xa5, 0x2e, 0x85, 0x34, 0xc2, 0x02,
+	0x4a, 0xc7, 0x5d, 0xa2, 0x92, 0x78, 0x30, 0x22, 0x41, 0xf7, 0x40, 0xa2, 0x35, 0xd1, 0xc4, 0xcb,
+	0xa6, 0xbb, 0x1d, 0xcb, 0xc4, 0x6d, 0xa7, 0x74, 0xba, 0x1b, 0x36, 0x84, 0x44, 0x7d, 0x03, 0x9a,
+	0x70, 0x30, 0x31, 0xf1, 0x6a, 0x3c, 0xfa, 0x32, 0x38, 0x92, 0x78, 0xf1, 0x64, 0x0c, 0xfc, 0x92,
+	0xdf, 0xdb, 0xf8, 0xa5, 0xd3, 0x69, 0xbb, 0x5d, 0x5a, 0xb6, 0x97, 0x4d, 0xe7, 0x99, 0xe7, 0xcf,
+	0xe7, 0x79, 0x76, 0xbe, 0x93, 0x01, 0x9b, 0x17, 0x23, 0x0f, 0xfb, 0x7d, 0xd3, 0xc5, 0xa8, 0x47,
+	0x7d, 0x8c, 0x86, 0x4d, 0x74, 0x39, 0xc0, 0xfe, 0x48, 0xf7, 0x7c, 0x1a, 0x50, 0xb8, 0x92, 0x6c,
+	0xeb, 0xe1, 0xb6, 0x3e, 0x6c, 0x2a, 0x07, 0x3d, 0xca, 0x1c, 0xca, 0x50, 0xd7, 0x64, 0x38, 0xf2,
+	0x45, 0xc3, 0x66, 0x17, 0x07, 0x66, 0x13, 0x79, 0xa6, 0x4d, 0x5c, 0x33, 0x20, 0xd4, 0x8d, 0xc2,
+	0x95, 0x9c, 0xec, 0xc1, 0xc8, 0xc3, 0x4c, 0x6c, 0xd7, 0x6d, 0x4a, 0xed, 0x3e, 0x46, 0xa6, 0x47,
+	0x90, 0xe9, 0xba, 0x34, 0xe0, 0xb1, 0xf1, 0xee, 0x8a, 0xe9, 0x10, 0x97, 0x22, 0xfe, 0x2b, 0x4c,
+	0xab, 0x36, 0xb5, 0x29, 0xff, 0x44, 0xe1, 0x57, 0x64, 0xd5, 0x3a, 0x60, 0xed, 0xab, 0x90, 0xe3,
+	0xdc, 0x24, 0xfd, 0x2e, 0xbd, 0xc2, 0xcc, 0xc0, 0x97, 0x03, 0xcc, 0x02, 0x78, 0x06, 0x40, 0x8a,
+	0x54, 0x93, 0xb6, 0xa5, 0xbd, 0xc5, 0xd6, 0xae, 0x1e, 0xf1, 0xeb, 0x21, 0xbf, 0x1e, 0xf5, 0x2a,
+	0xf8, 0xf5, 0x2f, 0x4d, 0x1b, 0x8b, 0x58, 0x63, 0x2c, 0x52, 0xfb, 0x53, 0x02, 0xeb, 0x93, 0x15,
+	0x98, 0x47, 0x5d, 0x86, 0xe1, 0x67, 0x40, 0x76, 0x62, 0x63, 0x4d, 0xda, 0x9e, 0xd9, 0x5b, 0x6c,
+	0x29, 0xfa, 0x93, 0xa1, 0xe9, 0x22, 0xf0, 0x44, 0xbe, 0xfb, 0x6f, 0xab, 0xf2, 0xd7, 0xcb, 0xbf,
+	0x0f, 0x24, 0x23, 0x8d, 0x83, 0x9f, 0x67, 0x38, 0xab, 0x9c, 0xb3, 0x31, 0x95, 0x33, 0x22, 0xc8,
+	0x80, 0xee, 0x80, 0x37, 0xc7, 0x39, 0xe3, 0x39, 0x2c, 0x83, 0x2a, 0xb1, 0x78, 0xff, 0xb2, 0x51,
+	0x25, 0x96, 0xf6, 0x2d, 0x58, 0xcd, 0xba, 0x89, 0x66, 0x3e, 0x01, 0xf3, 0x02, 0x4a, 0x0c, 0xab,
+	0x64, 0x2b, 0x71, 0x94, 0x76, 0x26, 0xfe, 0x89, 0x53, 0xdc, 0x27, 0x43, 0xec, 0x63, 0xab, 0x80,
+	0x00, 0x6e, 0x02, 0xe0, 0x60, 0xc6, 0x4c, 0x1b, 0x77, 0x88, 0xc5, 0x3b, 0x96, 0x0d, 0x59, 0x58,
+	0xda, 0x96, 0xf6, 0xa1, 0x98, 0xf7, 0x58, 0x1e, 0x81, 0x58, 0x07, 0xb2, 0x15, 0x1b, 0x79, 0xbe,
+	0x05, 0x23, 0x35, 0x68, 0xc7, 0xa0, 0xc6, 0xe3, 0x0c, 0xdc, 0x23, 0x1e, 0xc1, 0x6e, 0xd0, 0x66,
+	0x4e, 0x8c, 0x50, 0x07, 0xb2, 0x1f, 0x9b, 0x05, 0x49, 0x6a, 0xd0, 0x5a, 0x60, 0x23, 0x27, 0x52,
+	0x14, 0x5d, 0x03, 0x73, 0x84, 0x39, 0x9d, 0xa4, 0x83, 0x59, 0xc2, 0x9c, 0xb6, 0xa5, 0xd9, 0xa2,
+	0xda, 0x37, 0xd8, 0x27, 0xdf, 0x8f, 0x4e, 0xfd, 0x91, 0x31, 0x70, 0xe3, 0x6a, 0xf9, 0x21, 0xb0,
+	0x06, 0xe6, 0x45, 0x97, 0xa2, 0xe9, 0x78, 0x09, 0x15, 0xb0, 0xe0, 0xe0, 0xc0, 0xb4, 0xcc, 0xc0,
+	0xac, 0xcd, 0xf0, 0xad, 0x64, 0xad, 0x7d, 0x24, 0xe0, 0xb2, 0x85, 0x04, 0x9c, 0x02, 0x16, 0x86,
+	0xa1, 0x9d, 0x24, 0x03, 0x49, 0xd6, 0xda, 0x9a, 0x38, 0x0f, 0x06, 0xb6, 0x09, 0x0b, 0xc2, 0x11,
+	0xb5, 0xbf, 0x3e, 0x67, 0x1a, 0x02, 0x6f, 0xe7, 0x98, 0x93, 0x8c, 0x6f, 0x80, 0x19, 0x62, 0x45,
+	0xa7, 0xf9, 0x35, 0x23, 0xfc, 0xd4, 0xd6, 0xc5, 0x81, 0x49, 0x03, 0xbe, 0xa0, 0xf4, 0x07, 0xa6,
+	0xbd, 0x0f, 0xea, 0x79, 0xf6, 0x67, 0x32, 0x3d, 0x25, 0xfa, 0xd4, 0xf3, 0xf2, 0x88, 0x42, 0x73,
+	0x71, 0x9e, 0xd6, 0x6f, 0x32, 0x98, 0xe5, 0x11, 0xf0, 0x27, 0x09, 0xc8, 0x89, 0x2e, 0xe1, 0x5e,
+	0xce, 0x89, 0xcd, 0xbd, 0x1c, 0x94, 0xfd, 0x12, 0x9e, 0x51, 0x79, 0x6d, 0xeb, 0xe7, 0x7f, 0x5e,
+	0xdc, 0x56, 0x37, 0xe0, 0x5b, 0x28, 0xbd, 0xcf, 0x86, 0x4d, 0x94, 0x0a, 0xf8, 0x47, 0x09, 0xcc,
+	0x8b, 0x30, 0xb8, 0x3b, 0x25, 0x6f, 0x5c, 0xbf, 0x31, 0xd5, 0x4f, 0x54, 0x7f, 0x87, 0x57, 0x57,
+	0x61, 0xbd, 0xa0, 0x3a, 0xba, 0x26, 0xd6, 0x0d, 0xfc, 0x43, 0x02, 0x72, 0x22, 0x97, 0xe2, 0x31,
+	0x4c, 0x2a, 0xb3, 0x78, 0x0c, 0x4f, 0xb4, 0xa7, 0x7d, 0xcc, 0x41, 0x3e, 0x80, 0x47, 0xcf, 0x81,
+	0xa0, 0x44, 0x8d, 0xe8, 0x3a, 0x95, 0xf8, 0x0d, 0xfc, 0x5d, 0x02, 0x4b, 0xe3, 0xe2, 0x82, 0xef,
+	0x16, 0x15, 0xce, 0x11, 0xaf, 0xf2, 0x5e, 0x39, 0x67, 0x01, 0x8a, 0x38, 0xe8, 0x3e, 0x6c, 0x64,
+	0x41, 0x13, 0xb5, 0x77, 0x08, 0x73, 0xd0, 0x75, 0xb2, 0xbc, 0x81, 0xbf, 0x48, 0x60, 0x69, 0x5c,
+	0x5c, 0xc5, 0x70, 0x39, 0x5a, 0x2f, 0x86, 0xcb, 0xd3, 0x6b, 0xd1, 0xdf, 0xc9, 0x35, 0x3b, 0xea,
+	0x58, 0xfe, 0xa8, 0xe3, 0x0f, 0xdc, 0x90, 0x68, 0x39, 0x2b, 0xcf, 0xe2, 0x83, 0x95, 0xf5, 0x53,
+	0xf4, 0x72, 0x7e, 0x09, 0xd0, 0x0e, 0x07, 0xda, 0x82, 0x9b, 0x93, 0xd3, 0x8a, 0xbd, 0xc3, 0x71,
+	0x31, 0x78, 0x2b, 0x81, 0xd7, 0x27, 0x74, 0x0e, 0x1b, 0xd3, 0x4b, 0x71, 0x47, 0x05, 0x95, 0x74,
+	0x4c, 0xa0, 0x76, 0x39, 0xd4, 0x36, 0x54, 0x0b, 0xa1, 0x2e, 0x38, 0x41, 0x76, 0x4e, 0xe1, 0xa5,
+	0x51, 0x66, 0x4e, 0xa1, 0x5f, 0x99, 0x39, 0x8d, 0x5f, 0x42, 0x25, 0xe6, 0x64, 0x7a, 0x1e, 0x3b,
+	0x31, 0xee, 0x1e, 0x54, 0xe9, 0xfe, 0x41, 0x95, 0xfe, 0x7f, 0x50, 0xa5, 0x5f, 0x1f, 0xd5, 0xca,
+	0xfd, 0xa3, 0x5a, 0xf9, 0xf7, 0x51, 0xad, 0x7c, 0x77, 0x6c, 0x93, 0xe0, 0x62, 0xd0, 0xd5, 0x7b,
+	0xd4, 0x41, 0xdd, 0x9e, 0x77, 0x48, 0x5c, 0x97, 0x0e, 0xa3, 0x27, 0x4f, 0x9a, 0xf2, 0x50, 0x3c,
+	0xaf, 0xae, 0xa2, 0x17, 0x13, 0x7f, 0x2e, 0x75, 0xe7, 0xf8, 0x43, 0xe7, 0xe8, 0x55, 0x00, 0x00,
+	0x00, 0xff, 0xff, 0x78, 0x59, 0x9a, 0x5c, 0xae, 0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -695,6 +868,10 @@ type QueryClient interface {
 	VerifyDryRun(ctx context.Context, in *QueryVerifyDryRunRequest, opts ...grpc.CallOption) (*QueryVerifyDryRunResponse, error)
 	// RegisteredISMs ...
 	RegisteredISMs(ctx context.Context, in *QueryRegisteredISMs, opts ...grpc.CallOption) (*QueryRegisteredISMsResponse, error)
+	// RegisteredHooks ...
+	RegisteredHooks(ctx context.Context, in *QueryRegisteredHooks, opts ...grpc.CallOption) (*QueryRegisteredHooksResponse, error)
+	// RegisteredApps ...
+	RegisteredApps(ctx context.Context, in *QueryRegisteredApps, opts ...grpc.CallOption) (*QueryRegisteredAppsResponse, error)
 }
 
 type queryClient struct {
@@ -759,6 +936,24 @@ func (c *queryClient) RegisteredISMs(ctx context.Context, in *QueryRegisteredISM
 	return out, nil
 }
 
+func (c *queryClient) RegisteredHooks(ctx context.Context, in *QueryRegisteredHooks, opts ...grpc.CallOption) (*QueryRegisteredHooksResponse, error) {
+	out := new(QueryRegisteredHooksResponse)
+	err := c.cc.Invoke(ctx, "/hyperlane.core.v1.Query/RegisteredHooks", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) RegisteredApps(ctx context.Context, in *QueryRegisteredApps, opts ...grpc.CallOption) (*QueryRegisteredAppsResponse, error) {
+	out := new(QueryRegisteredAppsResponse)
+	err := c.cc.Invoke(ctx, "/hyperlane.core.v1.Query/RegisteredApps", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Mailboxes ...
@@ -777,6 +972,10 @@ type QueryServer interface {
 	VerifyDryRun(context.Context, *QueryVerifyDryRunRequest) (*QueryVerifyDryRunResponse, error)
 	// RegisteredISMs ...
 	RegisteredISMs(context.Context, *QueryRegisteredISMs) (*QueryRegisteredISMsResponse, error)
+	// RegisteredHooks ...
+	RegisteredHooks(context.Context, *QueryRegisteredHooks) (*QueryRegisteredHooksResponse, error)
+	// RegisteredApps ...
+	RegisteredApps(context.Context, *QueryRegisteredApps) (*QueryRegisteredAppsResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -800,6 +999,12 @@ func (*UnimplementedQueryServer) VerifyDryRun(ctx context.Context, req *QueryVer
 }
 func (*UnimplementedQueryServer) RegisteredISMs(ctx context.Context, req *QueryRegisteredISMs) (*QueryRegisteredISMsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RegisteredISMs not implemented")
+}
+func (*UnimplementedQueryServer) RegisteredHooks(ctx context.Context, req *QueryRegisteredHooks) (*QueryRegisteredHooksResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisteredHooks not implemented")
+}
+func (*UnimplementedQueryServer) RegisteredApps(ctx context.Context, req *QueryRegisteredApps) (*QueryRegisteredAppsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RegisteredApps not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -914,6 +1119,42 @@ func _Query_RegisteredISMs_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_RegisteredHooks_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryRegisteredHooks)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).RegisteredHooks(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hyperlane.core.v1.Query/RegisteredHooks",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).RegisteredHooks(ctx, req.(*QueryRegisteredHooks))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_RegisteredApps_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryRegisteredApps)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).RegisteredApps(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/hyperlane.core.v1.Query/RegisteredApps",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).RegisteredApps(ctx, req.(*QueryRegisteredApps))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var Query_serviceDesc = _Query_serviceDesc
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "hyperlane.core.v1.Query",
@@ -942,6 +1183,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RegisteredISMs",
 			Handler:    _Query_RegisteredISMs_Handler,
+		},
+		{
+			MethodName: "RegisteredHooks",
+			Handler:    _Query_RegisteredHooks_Handler,
+		},
+		{
+			MethodName: "RegisteredApps",
+			Handler:    _Query_RegisteredApps_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1366,6 +1615,134 @@ func (m *QueryRegisteredISMsResponse) MarshalToSizedBuffer(dAtA []byte) (int, er
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryRegisteredHooks) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryRegisteredHooks) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryRegisteredHooks) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryRegisteredHooksResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryRegisteredHooksResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryRegisteredHooksResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Ids) > 0 {
+		dAtA7 := make([]byte, len(m.Ids)*10)
+		var j6 int
+		for _, num := range m.Ids {
+			for num >= 1<<7 {
+				dAtA7[j6] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j6++
+			}
+			dAtA7[j6] = uint8(num)
+			j6++
+		}
+		i -= j6
+		copy(dAtA[i:], dAtA7[:j6])
+		i = encodeVarintQuery(dAtA, i, uint64(j6))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryRegisteredApps) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryRegisteredApps) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryRegisteredApps) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryRegisteredAppsResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryRegisteredAppsResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryRegisteredAppsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Ids) > 0 {
+		dAtA9 := make([]byte, len(m.Ids)*10)
+		var j8 int
+		for _, num := range m.Ids {
+			for num >= 1<<7 {
+				dAtA9[j8] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j8++
+			}
+			dAtA9[j8] = uint8(num)
+			j8++
+		}
+		i -= j8
+		copy(dAtA[i:], dAtA9[:j8])
+		i = encodeVarintQuery(dAtA, i, uint64(j8))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -1531,6 +1908,56 @@ func (m *QueryRegisteredISMs) Size() (n int) {
 }
 
 func (m *QueryRegisteredISMsResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Ids) > 0 {
+		l = 0
+		for _, e := range m.Ids {
+			l += sovQuery(uint64(e))
+		}
+		n += 1 + sovQuery(uint64(l)) + l
+	}
+	return n
+}
+
+func (m *QueryRegisteredHooks) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryRegisteredHooksResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Ids) > 0 {
+		l = 0
+		for _, e := range m.Ids {
+			l += sovQuery(uint64(e))
+		}
+		n += 1 + sovQuery(uint64(l)) + l
+	}
+	return n
+}
+
+func (m *QueryRegisteredApps) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *QueryRegisteredAppsResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -2564,6 +2991,358 @@ func (m *QueryRegisteredISMsResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: QueryRegisteredISMsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType == 0 {
+				var v uint32
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowQuery
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				m.Ids = append(m.Ids, v)
+			} else if wireType == 2 {
+				var packedLen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowQuery
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					packedLen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if packedLen < 0 {
+					return ErrInvalidLengthQuery
+				}
+				postIndex := iNdEx + packedLen
+				if postIndex < 0 {
+					return ErrInvalidLengthQuery
+				}
+				if postIndex > l {
+					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA[iNdEx:postIndex] {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Ids) == 0 {
+					m.Ids = make([]uint32, 0, elementCount)
+				}
+				for iNdEx < postIndex {
+					var v uint32
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowQuery
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						v |= uint32(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					m.Ids = append(m.Ids, v)
+				}
+			} else {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ids", wireType)
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryRegisteredHooks) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryRegisteredHooks: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryRegisteredHooks: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryRegisteredHooksResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryRegisteredHooksResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryRegisteredHooksResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType == 0 {
+				var v uint32
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowQuery
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= uint32(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				m.Ids = append(m.Ids, v)
+			} else if wireType == 2 {
+				var packedLen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowQuery
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					packedLen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if packedLen < 0 {
+					return ErrInvalidLengthQuery
+				}
+				postIndex := iNdEx + packedLen
+				if postIndex < 0 {
+					return ErrInvalidLengthQuery
+				}
+				if postIndex > l {
+					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA[iNdEx:postIndex] {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Ids) == 0 {
+					m.Ids = make([]uint32, 0, elementCount)
+				}
+				for iNdEx < postIndex {
+					var v uint32
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowQuery
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						v |= uint32(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					m.Ids = append(m.Ids, v)
+				}
+			} else {
+				return fmt.Errorf("proto: wrong wireType = %d for field Ids", wireType)
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryRegisteredApps) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryRegisteredApps: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryRegisteredApps: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryRegisteredAppsResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryRegisteredAppsResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryRegisteredAppsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

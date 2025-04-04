@@ -48,6 +48,18 @@ service Query {
       returns (QueryRegisteredISMsResponse) {
     option (google.api.http).get = "/hyperlane/v1/registered_isms";
   }
+
+  // RegisteredHooks ...
+  rpc RegisteredHooks(QueryRegisteredHooks)
+      returns (QueryRegisteredHooksResponse) {
+    option (google.api.http).get = "/hyperlane/v1/registered_hooks";
+  }
+
+  // RegisteredApps ...
+  rpc RegisteredApps(QueryRegisteredApps)
+      returns (QueryRegisteredAppsResponse) {
+    option (google.api.http).get = "/hyperlane/v1/registered_apps";
+  }
 }
 
 // QueryMailboxesRequest ...
@@ -103,3 +115,15 @@ message QueryRegisteredISMs {}
 
 // QueryRegisteredISMsResponse ...
 message QueryRegisteredISMsResponse { repeated uint32 ids = 1; }
+
+// QueryRegisteredHooks ...
+message QueryRegisteredHooks {}
+
+// QueryRegisteredHooksResponse ...
+message QueryRegisteredHooksResponse { repeated uint32 ids = 1; }
+
+// QueryRegisteredApps ...
+message QueryRegisteredApps {}
+
+// QueryRegisteredAppsResponse ...
+message QueryRegisteredAppsResponse { repeated uint32 ids = 1; }

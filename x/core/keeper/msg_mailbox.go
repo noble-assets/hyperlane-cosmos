@@ -9,6 +9,56 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
+func (k Keeper) CreateMailbox(ctx context.Context, req *types.MsgCreateMailbox) (util.HexAddress, error) {
+	// Check ism existence
+	if err := k.AssertIsmExists(ctx, req.DefaultIsm); err != nil {
+		return util.HexAddress{}, err
+	}
+
+	// Check default hook is valid if set
+	if req.DefaultHook != nil {
+		if err := k.AssertPostDispatchHookExists(ctx, *req.DefaultHook); err != nil {
+			return util.HexAddress{}, err
+		}
+	}
+
+	// Check required hook is valid if set.
+	// The "required" means that this hook can not be overridden by the message dispatcher
+	if req.RequiredHook != nil {
+		if err := k.AssertPostDispatchHookExists(ctx, *req.RequiredHook); err != nil {
+			return util.HexAddress{}, err
+		}
+	}
+
+	mailboxCount, err := k.MailboxesSequence.Next(ctx)
+	if err != nil {
+		return util.HexAddress{}, err
+	}
+
+	identifier := [20]byte{}
+	copy(identifier[:], types.ModuleName)
+
+	// generate a new unique id that is compliant with the way the router generates ids
+	prefixedId := util.GenerateHexAddress(identifier, uint32(types.ModuleId), mailboxCount)
+
+	newMailbox := types.Mailbox{
+		Id:              prefixedId,
+		Owner:           req.Owner,
+		MessageSent:     0,
+		MessageReceived: 0,
+		DefaultIsm:      req.DefaultIsm,
+		DefaultHook:     req.DefaultHook,
+		RequiredHook:    req.RequiredHook,
+		LocalDomain:     req.LocalDomain,
+	}
+
+	if err = k.Mailboxes.Set(ctx, prefixedId.GetInternalId(), newMailbox); err != nil {
+		return util.HexAddress{}, err
+	}
+
+	return prefixedId, nil
+}
+
 func (ms msgServer) CreateMailbox(ctx context.Context, req *types.MsgCreateMailbox) (*types.MsgCreateMailboxResponse, error) {
 	prefixedId, err := ms.k.CreateMailbox(ctx, req)
 	if err != nil {
