@@ -75,7 +75,7 @@ func (r *Router[T]) GetModule(id HexAddress) (*T, error) {
 }
 
 func (r *Router[T]) GetModuleIds() (moduleIds []uint32) {
-	for moduleId, _ := range r.modules {
+	for moduleId := range r.modules {
 		moduleIds = append(moduleIds, moduleId)
 	}
 
