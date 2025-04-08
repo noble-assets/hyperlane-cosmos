@@ -3,6 +3,7 @@ package util
 import (
 	"context"
 	"fmt"
+	"slices"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
@@ -79,6 +80,7 @@ func (r *Router[T]) GetModuleIds() (moduleIds []uint32) {
 		moduleIds = append(moduleIds, moduleId)
 	}
 
+	slices.Sort(moduleIds)
 	return
 }
 
