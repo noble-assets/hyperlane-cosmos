@@ -14,22 +14,18 @@
 
 An '!' indicates a state machine breaking change.
 
-## Unreleased
+## [v1.0.0-rc0](https://github.com/bcp-innovations/hyperlane-cosmos/releases/tag/v1.0.0-rc0) - 2025-04-15
 
 ### Features
 
 - ! [#98](https://github.com/bcp-innovations/hyperlane-cosmos/pull/98) Add renounce ownership functionalities and validate new owner.
-- ! [#100](https://github.com/bcp-innovations/hyperlane-cosmos/pull/100) Routing ISM
+- ! [#100](https://github.com/bcp-innovations/hyperlane-cosmos/pull/100) Add support for the Routing ISM.
 
 ### Improvements
 
 - [#104](https://github.com/bcp-innovations/hyperlane-cosmos/pull/104) Add more events and align existing ones.
 - [#99](https://github.com/bcp-innovations/hyperlane-cosmos/pull/99) Add registration queries for routers, extract create mailbox logic.
-- [#102](https://github.com/bcp-innovations/hyperlane-cosmos/pull/102) Add Query Commands for CLI
-
-### Bug Fixes
-
-- [#103](https://github.com/bcp-innovations/hyperlane-cosmos/pull/103) Only execute `buf-break-check` when opening a PR
+- [#102](https://github.com/bcp-innovations/hyperlane-cosmos/pull/102) Add Query Commands for CLI.
 
 ## [v1.0.0-beta0](https://github.com/bcp-innovations/hyperlane-cosmos/releases/tag/v1.0.0-beta0) - 2025-03-27
 
