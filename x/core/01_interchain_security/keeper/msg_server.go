@@ -61,6 +61,20 @@ func (k *Keeper) CreateRoutingIsm(ctx context.Context, req *types.MsgCreateRouti
 		return util.HexAddress{}, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
 
+	_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventCreateRoutingIsm{
+		IsmId: ismId,
+		Owner: req.Creator,
+	})
+
+	for _, route := range newIsm.Routes {
+		_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventSetRoutingIsmDomain{
+			Owner:       req.Creator,
+			IsmId:       ismId,
+			RouteIsmId:  route.Ism,
+			RouteDomain: route.Domain,
+		})
+	}
+
 	return ismId, nil
 }
 
@@ -106,6 +120,13 @@ func (m msgServer) UpdateRoutingIsmOwner(ctx context.Context, req *types.MsgUpda
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
 
+	_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventSetRoutingIsm{
+		Owner:             req.Owner,
+		IsmId:             routingISM.Id,
+		NewOwner:          req.NewOwner,
+		RenounceOwnership: req.RenounceOwnership,
+	})
+
 	return &types.MsgUpdateRoutingIsmOwnerResponse{}, nil
 }
 
@@ -124,6 +145,12 @@ func (m msgServer) RemoveRoutingIsmDomain(ctx context.Context, req *types.MsgRem
 	if err = m.k.isms.Set(ctx, routingISM.Id.GetInternalId(), routingISM); err != nil {
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
+
+	_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventRemoveRoutingIsmDomain{
+		Owner:       req.Owner,
+		IsmId:       req.IsmId,
+		RouteDomain: req.Domain,
+	})
 
 	return &types.MsgRemoveRoutingIsmDomainResponse{}, nil
 }
@@ -149,6 +176,13 @@ func (m msgServer) SetRoutingIsmDomain(ctx context.Context, req *types.MsgSetRou
 	if err = m.k.isms.Set(ctx, routingISM.Id.GetInternalId(), routingISM); err != nil {
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
+
+	_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventSetRoutingIsmDomain{
+		Owner:       req.Owner,
+		IsmId:       req.IsmId,
+		RouteIsmId:  req.Route.Ism,
+		RouteDomain: req.Route.Domain,
+	})
 
 	return &types.MsgSetRoutingIsmDomainResponse{}, nil
 }
@@ -237,6 +271,13 @@ func (m msgServer) AnnounceValidator(ctx context.Context, req *types.MsgAnnounce
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
 
+	_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventAnnounceStorageLocation{
+		Sender:          req.Creator,
+		Validator:       util.EncodeEthHex(validatorAddress),
+		MailboxId:       req.MailboxId,
+		StorageLocation: req.StorageLocation,
+	})
+
 	return &types.MsgAnnounceValidatorResponse{}, nil
 }
 
@@ -260,6 +301,13 @@ func (m msgServer) CreateMessageIdMultisigIsm(ctx context.Context, req *types.Ms
 	if err = m.k.isms.Set(ctx, ismId.GetInternalId(), &newIsm); err != nil {
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
+
+	_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventCreateMessageIdMultisigIsm{
+		IsmId:      newIsm.Id,
+		Owner:      newIsm.Owner,
+		Validators: newIsm.Validators,
+		Threshold:  newIsm.Threshold,
+	})
 
 	return &types.MsgCreateMessageIdMultisigIsmResponse{Id: ismId}, nil
 }
@@ -285,6 +333,13 @@ func (m msgServer) CreateMerkleRootMultisigIsm(ctx context.Context, req *types.M
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
 
+	_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventCreateMerkleRootMultisigIsm{
+		IsmId:      newIsm.Id,
+		Owner:      newIsm.Owner,
+		Validators: newIsm.Validators,
+		Threshold:  newIsm.Threshold,
+	})
+
 	return &types.MsgCreateMerkleRootMultisigIsmResponse{Id: ismId}, nil
 }
 
@@ -304,6 +359,11 @@ func (m msgServer) CreateNoopIsm(ctx context.Context, ism *types.MsgCreateNoopIs
 	if err = m.k.isms.Set(ctx, ismId.GetInternalId(), &newIsm); err != nil {
 		return nil, errors.Wrap(types.ErrUnexpectedError, err.Error())
 	}
+
+	_ = sdk.UnwrapSDKContext(ctx).EventManager().EmitTypedEvent(&types.EventCreateNoopIsm{
+		IsmId: ismId,
+		Owner: ism.Creator,
+	})
 
 	return &types.MsgCreateNoopIsmResponse{Id: ismId}, nil
 }
