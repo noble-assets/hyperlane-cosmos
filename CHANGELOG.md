@@ -24,6 +24,7 @@ An '!' indicates a state machine breaking change.
 ### Improvements
 
 - [#99](https://github.com/bcp-innovations/hyperlane-cosmos/pull/99) Add registration queries for routers, extract create mailbox logic
+- [#102](https://github.com/bcp-innovations/hyperlane-cosmos/pull/102) Add Query Commands for CLI
 
 ### Bug Fixes
 
