@@ -107,6 +107,12 @@ message QueryRemoteRoutersResponse {
 message QueryQuoteRemoteTransferRequest {
   string id = 1;
   string destination_domain = 2;
+  string custom_hook_id = 3 [
+    (gogoproto.customtype) =
+        "github.com/bcp-innovations/hyperlane-cosmos/util.HexAddress",
+    (gogoproto.nullable) = true
+  ];
+  string custom_hook_metadata = 4;
 }
 
 // QueryQuoteRemoteTransferResponse ...
