@@ -106,8 +106,11 @@ func (qs queryServer) QuoteRemoteTransfer(ctx context.Context, request *types.Qu
 
 	overwriteHookId := util.NewZeroAddress()
 	var customHookMetadata []byte
-	if request.CustomHookId != nil {
-		overwriteHookId = *request.CustomHookId
+	if request.CustomHookId != "" {
+		overwriteHookId, err = util.DecodeHexAddress(request.CustomHookId)
+		if err != nil {
+			return nil, fmt.Errorf("invalid custom hook id")
+		}
 
 		customHookMetadata, err = util.DecodeEthHex(request.CustomHookMetadata)
 		if err != nil {

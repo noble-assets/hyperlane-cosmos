@@ -3,7 +3,6 @@ package cli
 import (
 	"fmt"
 
-	"github.com/bcp-innovations/hyperlane-cosmos/util"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
@@ -172,19 +171,10 @@ func CmdQuoteRemoteTransfer() *cobra.Command {
 
 			queryClient := types.NewQueryClient(clientCtx)
 
-			var parsedHookId *util.HexAddress = nil
-			if customHookId != "" {
-				parsed, err := util.DecodeHexAddress(customHookId)
-				if err != nil {
-					return err
-				}
-				parsedHookId = &parsed
-			}
-
 			params := &types.QueryQuoteRemoteTransferRequest{
 				Id:                 args[0],
 				DestinationDomain:  args[1],
-				CustomHookId:       parsedHookId,
+				CustomHookId:       customHookId,
 				CustomHookMetadata: customHookMetadata,
 			}
 
