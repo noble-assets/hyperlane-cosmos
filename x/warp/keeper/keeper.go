@@ -16,6 +16,7 @@ import (
 	"cosmossdk.io/errors"
 
 	"github.com/bcp-innovations/hyperlane-cosmos/util"
+	coretypes "github.com/bcp-innovations/hyperlane-cosmos/x/core/types"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -93,22 +94,20 @@ func (k *Keeper) ReceiverIsmId(ctx context.Context, recipient util.HexAddress) (
 	}
 
 	if token.IsmId == nil {
-		mailbox, err := k.coreKeeper.GetMailbox(ctx, token.OriginMailbox)
-		if err != nil {
-			return nil, err
-		}
-		return &mailbox.DefaultIsm, nil
+		return nil, coretypes.ErrNoReceiverISM
 	}
 
 	return token.IsmId, nil
 }
 
 func (k *Keeper) Handle(ctx context.Context, mailboxId util.HexAddress, message util.HyperlaneMessage) error {
+	// NOTE: the recipient of a transfer is the token address
 	token, err := k.HypTokens.Get(ctx, message.Recipient.GetInternalId())
 	if err != nil {
 		return err
 	}
 
+	// NOTE: the warp payload ignore the additional metadata.
 	payload, err := types.ParseWarpPayload(message.Body)
 	if err != nil {
 		return err
@@ -123,6 +122,7 @@ func (k *Keeper) Handle(ctx context.Context, mailboxId util.HexAddress, message 
 		return fmt.Errorf("no enrolled router found for origin %d", message.Origin)
 	}
 
+	// NOTE: what?
 	if message.Sender.String() != strings.ToLower(remoteRouter.ReceiverContract) {
 		return fmt.Errorf("invalid receiver contract")
 	}
