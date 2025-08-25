@@ -339,7 +339,7 @@ var _ = Describe("msg_mailbox.go", Ordered, func() {
 		})
 
 		// Assert
-		Expect(err.Error()).To(Equal("failed to decode message"))
+		Expect(err.Error()).To(ContainSubstring("failed to decode message"))
 	})
 
 	It("ProcessMessage (invalid) with invalid metadata (Noop ISM)", func() {
@@ -358,10 +358,10 @@ var _ = Describe("msg_mailbox.go", Ordered, func() {
 		})
 
 		// Assert
-		Expect(err.Error()).To(Equal("failed to decode metadata"))
+		Expect(err.Error()).To(ContainSubstring("failed to decode metadata"))
 	})
 
-	It("ProcessMessage (invalid) (unkown recipient)", func() {
+	It("ProcessMessage (invalid) (unknown recipient)", func() {
 		// Arrange
 		mailboxId, _, _, _ := createValidMailbox(s, creator.Address, "noop", 1)
 

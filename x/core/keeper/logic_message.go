@@ -53,7 +53,7 @@ func (k Keeper) ProcessMessage(
 		return err
 	}
 	if received {
-		return fmt.Errorf("already received messsage with id %s", message.Id().String())
+		return fmt.Errorf("already received message with id %s", message.Id().String())
 	}
 	err = k.Messages.Set(ctx, key)
 	if err != nil {

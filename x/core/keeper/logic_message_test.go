@@ -223,7 +223,7 @@ var _ = Describe("logic_message.go", Ordered, func() {
 		})
 
 		// Assert
-		Expect(err.Error()).To(Equal(fmt.Sprintf("already received messsage with id %s", hypMsg.Id())))
+		Expect(err.Error()).To(Equal(fmt.Sprintf("already received message with id %s", hypMsg.Id())))
 
 		// Expect our mock app to not have been called again
 		callcount, _, _ = mockApp.CallInfo()
