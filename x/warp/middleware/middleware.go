@@ -33,7 +33,6 @@ func (m *Middleware) Exists(ctx context.Context, recipient util.HexAddress) (boo
 }
 
 func (m *Middleware) Handle(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
-
 	err := m.hook.PreHandleHook(ctx, mailboxID, message)
 	if err != nil {
 		return fmt.Errorf("failed to execute pre handle hook: %w", err)
