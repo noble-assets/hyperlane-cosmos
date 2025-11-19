@@ -61,7 +61,7 @@ we are going to create two wrapped middlewares around the warp application:
 	coreKeeper := &corekeeper.Keeper{}
 
 	middlewareInternal := middleware.NewMiddleware(warpKeeper, hook)
-	middlewareExternal := middleware.NewMiddleware(middlewareExternal, hook)
+	middlewareExternal := middleware.NewMiddleware(middlewareInternal, hook)
 ```
 
 The only thing left to do, is to register the application in the core Hyperlane keeper:
@@ -73,5 +73,5 @@ The only thing left to do, is to register the application in the core Hyperlane 
 		{TokenType: warptypes.HYP_TOKEN_TYPE_SYNTHETIC, App: warpKeeper},
 	}
 
-	warp.RegisterWarpApp(coreKeeper, warpApps...)
+	coreKeeper.RegisterApp(coreKeeper, warpApps...)
 ```
