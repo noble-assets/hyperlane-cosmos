@@ -52,7 +52,7 @@ var _ = Describe("logic_collateral.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, nil, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+		tokenId, _, igpId, _ := i.CreateToken(s, nil, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
 
 		err := s.MintBaseCoins(sender.Address, 1_000_000)
 		Expect(err).To(BeNil())
@@ -88,7 +88,7 @@ var _ = Describe("logic_collateral.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, nil, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+		tokenId, _, igpId, _ := i.CreateToken(s, nil, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
 
 		err := s.MintBaseCoins(sender.Address, math.NewInt(maxFee.Amount.Int64()).Uint64())
 		Expect(err).To(BeNil())
@@ -124,7 +124,7 @@ var _ = Describe("logic_collateral.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, nil, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+		tokenId, _, igpId, _ := i.CreateToken(s, nil, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
 
 		err := s.MintBaseCoins(sender.Address, math.NewInt(maxFee.Amount.Int64()).Uint64())
 		Expect(err).To(BeNil())
@@ -160,7 +160,7 @@ var _ = Describe("logic_collateral.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+		tokenId, _, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
 
 		err := s.MintBaseCoins(sender.Address, 1_000_000)
 		Expect(err).To(BeNil())
@@ -196,7 +196,7 @@ var _ = Describe("logic_collateral.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+		tokenId, _, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
 
 		err := s.MintBaseCoins(sender.Address, 1_000_000)
 		Expect(err).To(BeNil())
@@ -232,7 +232,7 @@ var _ = Describe("logic_collateral.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+		tokenId, _, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
 
 		senderBalance := s.App().BankKeeper.GetBalance(s.Ctx(), sender.AccAddress, denom)
 
@@ -263,7 +263,7 @@ var _ = Describe("logic_collateral.go", Ordered, func() {
 
 		amount := math.NewInt(100)
 
-		tokenId, mailboxId, _, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+		tokenId, mailboxId, _, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
 
 		err := s.MintBaseCoins(sender.Address, 1_000_000)
 		Expect(err).To(BeNil())
@@ -314,7 +314,7 @@ var _ = Describe("logic_collateral.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, mailboxId, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+		tokenId, mailboxId, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
 		err := s.MintBaseCoins(sender.Address, 1_000_000)
 		Expect(err).To(BeNil())
 

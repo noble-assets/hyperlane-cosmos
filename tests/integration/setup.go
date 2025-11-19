@@ -8,6 +8,8 @@ import (
 	"cosmossdk.io/math"
 
 	"github.com/bcp-innovations/hyperlane-cosmos/tests/simapp"
+	"github.com/bcp-innovations/hyperlane-cosmos/x/middleware"
+	warpTypes "github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
 	abci "github.com/cometbft/cometbft/abci/types"
 	"github.com/cometbft/cometbft/crypto/tmhash"
 	cmtProto "github.com/cometbft/cometbft/proto/tendermint/types"
@@ -32,6 +34,7 @@ type KeeperTestSuite struct {
 	denom               string
 	privateValidatorKey *ed25519.PrivKey
 	VoteInfos           []abci.VoteInfo
+	HandleHooks         map[warpTypes.HypTokenType]middleware.HandleHook
 }
 
 // DefaultConsensusParams ...
@@ -54,6 +57,7 @@ var DefaultConsensusParams = &cmtProto.ConsensusParams{
 
 func (suite *KeeperTestSuite) setupApp(startTime int64) {
 	suite.setupAppWithTokens(startTime, []int32{1, 2})
+	suite.setupWarpApps()
 }
 
 func (suite *KeeperTestSuite) setupAppWithTokens(startTime int64, enabledTokens []int32) {

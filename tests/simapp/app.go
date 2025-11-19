@@ -198,8 +198,6 @@ func NewMiniAppWithCustomConfig(
 
 	app.App = appBuilder.Build(db, traceStore, baseAppOptions...)
 
-	app.RegisterWarpApps()
-
 	// register streaming services
 	if err := app.RegisterStreamingServices(appOpts, app.kvStoreKeys()); err != nil {
 		return nil, err

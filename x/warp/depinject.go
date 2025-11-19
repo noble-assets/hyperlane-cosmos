@@ -62,18 +62,26 @@ func ProvideModule(in ModuleInputs) ModuleOutputs {
 	return ModuleOutputs{Module: m, Keeper: k}
 }
 
+// AutoCLIOptions implements the autocli.HasAutoCLIConfig interface.
+func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
+	return &autocliv1.ModuleOptions{}
+}
+
 type WarpApp struct {
 	TokenType types.HypTokenType
 	App       util.HyperlaneApp
 }
 
-func RegisterWarpApp(coreKeeper *coreKeeper.Keeper, warpApps ...WarpApp) {
-	for _, warpApp := range warpApps {
-		coreKeeper.RegisterApp(uint8(warpApp.TokenType), warpApp.App)
+func DefaultWarpApps(k *keeper.Keeper) []WarpApp {
+	collateralApp := WarpApp{
+		TokenType: types.HYP_TOKEN_TYPE_COLLATERAL,
+		App:       k,
 	}
-}
 
-// AutoCLIOptions implements the autocli.HasAutoCLIConfig interface.
-func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
-	return &autocliv1.ModuleOptions{}
+	syntheticApp := WarpApp{
+		TokenType: types.HYP_TOKEN_TYPE_SYNTHETIC,
+		App:       k,
+	}
+
+	return []WarpApp{collateralApp, syntheticApp}
 }

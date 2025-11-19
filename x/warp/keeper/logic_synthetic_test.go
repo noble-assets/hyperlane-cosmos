@@ -52,7 +52,7 @@ var _ = Describe("logic_synthetic.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, nil, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
+		tokenId, _, igpId, _ := i.CreateToken(s, nil, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
 
 		syntheticDenom := "hyperlane/" + tokenId.String()
 
@@ -93,7 +93,7 @@ var _ = Describe("logic_synthetic.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
+		tokenId, _, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
 
 		syntheticDenom := "hyperlane/" + tokenId.String()
 
@@ -134,7 +134,7 @@ var _ = Describe("logic_synthetic.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
+		tokenId, _, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
 
 		syntheticDenom := "hyperlane/" + tokenId.String()
 
@@ -175,7 +175,7 @@ var _ = Describe("logic_synthetic.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
+		tokenId, _, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
 
 		syntheticDenom := "hyperlane/" + tokenId.String()
 
@@ -216,7 +216,7 @@ var _ = Describe("logic_synthetic.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
+		tokenId, _, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
 
 		syntheticDenom := "hyperlane/" + tokenId.String()
 
@@ -257,7 +257,7 @@ var _ = Describe("logic_synthetic.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, _, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
+		tokenId, _, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
 
 		syntheticDenom := "hyperlane/" + tokenId.String()
 
@@ -292,7 +292,7 @@ var _ = Describe("logic_synthetic.go", Ordered, func() {
 		amount := math.NewInt(100)
 		maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-		tokenId, mailboxId, igpId, _ := createToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
+		tokenId, mailboxId, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_SYNTHETIC)
 
 		syntheticDenom := "hyperlane/" + tokenId.String()
 

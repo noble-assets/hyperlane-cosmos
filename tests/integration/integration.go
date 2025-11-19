@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/bcp-innovations/hyperlane-cosmos/x/middleware"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp"
 	warpTypes "github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
 
@@ -26,12 +27,20 @@ var (
 	C_DENOM = "ccoin"
 )
 
-func NewCleanChain() *KeeperTestSuite {
-	return NewCleanChainAtTime(time.Now().Unix())
+type SuiteOpt = func(*KeeperTestSuite)
+
+func NewCleanChain(suiteOpts ...SuiteOpt) *KeeperTestSuite {
+	return NewCleanChainAtTime(time.Now().Unix(), suiteOpts...)
 }
 
-func NewCleanChainAtTime(startTime int64) *KeeperTestSuite {
-	s := KeeperTestSuite{}
+func NewCleanChainAtTime(startTime int64, suiteOpts ...SuiteOpt) *KeeperTestSuite {
+	s := KeeperTestSuite{
+		HandleHooks: make(map[warpTypes.HypTokenType]middleware.HandleHook),
+	}
+
+	for _, opt := range suiteOpts {
+		opt(&s)
+	}
 	s.setupApp(startTime)
 	return &s
 }
