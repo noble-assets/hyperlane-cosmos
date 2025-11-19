@@ -3,10 +3,9 @@ package middleware_test
 import (
 	"context"
 	"errors"
+	"math/big"
 
 	"cosmossdk.io/math"
-
-	"math/big"
 
 	i "github.com/bcp-innovations/hyperlane-cosmos/tests/integration"
 	"github.com/bcp-innovations/hyperlane-cosmos/util"
@@ -45,7 +44,7 @@ var _ = Describe("middleware.go", Ordered, func() {
 	var s *i.KeeperTestSuite
 	var owner i.TestValidatorAddress
 	var sender i.TestValidatorAddress
-	var denom = "acoin"
+	denom := "acoin"
 	var keeper MockKeeper
 
 	BeforeEach(func() {
@@ -129,7 +128,6 @@ var _ = Describe("middleware.go", Ordered, func() {
 				}
 
 				senderBalance = s.App().BankKeeper.GetBalance(s.Ctx(), sender.AccAddress, denom)
-
 			})
 
 			It("MsgProcessMessage fails (pre handle hook)", func() {
@@ -228,5 +226,4 @@ var _ = Describe("middleware.go", Ordered, func() {
 			})
 		})
 	})
-
 })
