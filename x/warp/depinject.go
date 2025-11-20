@@ -69,18 +69,18 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 
 type WarpApp struct {
 	TokenType types.HypTokenType
-	App       util.HyperlaneApp
+	Handler   util.HyperlaneApp
 }
 
 func DefaultWarpApps(k *keeper.Keeper) []WarpApp {
 	collateralApp := WarpApp{
 		TokenType: types.HYP_TOKEN_TYPE_COLLATERAL,
-		App:       k,
+		Handler:   k,
 	}
 
 	syntheticApp := WarpApp{
 		TokenType: types.HYP_TOKEN_TYPE_SYNTHETIC,
-		App:       k,
+		Handler:   k,
 	}
 
 	return []WarpApp{collateralApp, syntheticApp}

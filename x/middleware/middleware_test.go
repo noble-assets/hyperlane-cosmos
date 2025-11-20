@@ -25,6 +25,7 @@ type MockKeeper struct {
 }
 
 func (k *MockKeeper) HandlePre(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
+	k.NumPreCall++
 	if k.IsFailingPre {
 		return errors.New("failing in pre handle")
 	}
@@ -33,6 +34,7 @@ func (k *MockKeeper) HandlePre(ctx context.Context, mailboxID util.HexAddress, m
 }
 
 func (k *MockKeeper) HandlePost(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
+	k.NumPostCall++
 	if k.IsFailingPost {
 		return errors.New("failing in post handle")
 	}

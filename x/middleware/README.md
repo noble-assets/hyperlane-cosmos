@@ -67,11 +67,9 @@ we are going to create two wrapped middlewares around the warp application:
 The only thing left to do, is to register the application in the core Hyperlane keeper:
 
 ```go
+  // Register the warp keeper with hook with the middleware for the collateral type.
+	coreKeeper.RegisterApp(warptypes.HYP_TOKEN_TYPE_COLLATERAL, middlewareExternal)
 
-	warpApps := []warp.WarpApp{
-		{TokenType: warptypes.HYP_TOKEN_TYPE_COLLATERAL, App: middlewareExternal},
-		{TokenType: warptypes.HYP_TOKEN_TYPE_SYNTHETIC, App: warpKeeper},
-	}
-
-	coreKeeper.RegisterApp(coreKeeper, warpApps...)
+  // Register the warp keeper without hook for the synthetic type.
+	coreKeeper.RegisterApp(warptypes.HYP_TOKEN_TYPE_SYNTHETIC, warpKeeper)
 ```

@@ -3,6 +3,7 @@ package integration
 import (
 	"cosmossdk.io/math"
 
+	"github.com/bcp-innovations/hyperlane-cosmos/tests/simapp"
 	ismTypes "github.com/bcp-innovations/hyperlane-cosmos/x/core/01_interchain_security/types"
 	pdTypes "github.com/bcp-innovations/hyperlane-cosmos/x/core/02_post_dispatch/types"
 	coreKeeper "github.com/bcp-innovations/hyperlane-cosmos/x/core/keeper"
@@ -21,40 +22,52 @@ import (
 
 var denom = "acoin"
 
-func (suite *KeeperTestSuite) setupWarpApps() {
-	defaultWarpApps := warp.DefaultWarpApps(&suite.app.WarpKeeper)
+// postBuildOpts returns a slice of post application build options.
+func (suite *KeeperTestSuite) postBuildOpts() simapp.PostBuildOpts {
+	return []simapp.PostBuildOpt{
+		suite.setupWarpApps(),
+	}
+}
 
+// setupWarpApps returns a post application build configuration handler to
+// register the warp applications on the hyperlane core. If middleware hooks
+// have been specified in the suite, they are used to wrap the warp keeper.
+func (suite *KeeperTestSuite) setupWarpApps() simapp.PostBuildOpt {
 	// If no custom hooks, use default registration
 	if len(suite.HandleHooks) == 0 {
-		suite.app.RegisterWarpApps(defaultWarpApps...)
-		return
+		return simapp.RegisterDefaultWarpAppsOpt()
 	}
 
-	warpAppsMap := make(map[types.HypTokenType]util.HyperlaneApp, len(defaultWarpApps))
-	for _, app := range defaultWarpApps {
-		warpAppsMap[app.TokenType] = app.App
+	return func(app *simapp.App) {
+		defaultWarpApps := warp.DefaultWarpApps(&app.WarpKeeper)
+
+		warpAppsMap := make(map[types.HypTokenType]util.HyperlaneApp, len(defaultWarpApps))
+		for _, defaultWarpApp := range defaultWarpApps {
+			warpAppsMap[defaultWarpApp.TokenType] = defaultWarpApp.Handler
+		}
+
+		// Wrap app with custom middleware if hooks are provided.
+		for tokenType, hook := range suite.HandleHooks {
+			app, ok := warpAppsMap[tokenType]
+			Expect(ok).To(BeTrue())
+
+			appMiddleware, err := middleware.NewMiddleware(app, hook)
+			Expect(err).To(BeNil())
+
+			warpAppsMap[tokenType] = appMiddleware
+		}
+
+		warpApps := make([]warp.WarpApp, 0, len(warpAppsMap))
+		for tokenType, warpApp := range warpAppsMap {
+			warpApps = append(warpApps, warp.WarpApp{
+				TokenType: tokenType,
+				Handler:   warpApp,
+			})
+		}
+
+		app.RegisterWarpApps(warpApps...)
 	}
 
-	// Wrap app with custom middleware if hooks are provided.
-	for tokenType, hook := range suite.HandleHooks {
-		app, ok := warpAppsMap[tokenType]
-		Expect(ok).To(BeTrue())
-
-		appMiddleware, err := middleware.NewMiddleware(app, hook)
-		Expect(err).To(BeNil())
-
-		warpAppsMap[tokenType] = appMiddleware
-	}
-
-	warpApps := make([]warp.WarpApp, 0, len(warpAppsMap))
-	for tokenType, app := range warpAppsMap {
-		warpApps = append(warpApps, warp.WarpApp{
-			TokenType: tokenType,
-			App:       app,
-		})
-	}
-
-	suite.app.RegisterWarpApps(warpApps...)
 }
 
 func createIgp(s *KeeperTestSuite, creator string) util.HexAddress {
