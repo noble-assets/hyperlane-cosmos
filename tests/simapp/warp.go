@@ -21,7 +21,7 @@ func RegisterWarpAppsOpt(warpApps ...warp.WarpApp) PostBuildOpt {
 	}
 }
 
-// RegisterWarpApps allows to register warp applications on the hyperlane
+// RegisterWarpApps allows to register Warp applications on the Hyperlane
 // core keeper of the main app.
 func (app *App) RegisterWarpApps(warpApps ...warp.WarpApp) {
 	for _, warpApp := range warpApps {

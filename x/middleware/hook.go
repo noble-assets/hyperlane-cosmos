@@ -6,7 +6,7 @@ import (
 	"github.com/bcp-innovations/hyperlane-cosmos/util"
 )
 
-// HandleFn is the signature of the Handle function of an Hyperlane application.
+// HandleFn is the signature of the Handle function of a Hyperlane application.
 type HandleFn = func(ctx context.Context, mailboxId util.HexAddress, message util.HyperlaneMessage) error
 
 type HandleHook interface {
@@ -17,11 +17,11 @@ type HandleHook interface {
 var _ HandleHook = &Hook{}
 
 type Hook struct {
-	// preHandleHook is the behavior expected from a type that hook BEFORE executing
+	// preHandleFn is the function expected from a hook type which is executed BEFORE
 	// the Hyperlane application Handle method.
 	preHandleFn HandleFn
 
-	// postHandleHook is the behavior expected from a type that hook AFTER executing
+	// postHandleFn is the function expected from a hook type which is executed AFTER
 	// the Hyperlane application Handle method.
 	postHandleFn HandleFn
 }

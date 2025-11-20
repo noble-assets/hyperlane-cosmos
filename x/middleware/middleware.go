@@ -8,7 +8,7 @@ import (
 	"github.com/bcp-innovations/hyperlane-cosmos/util"
 )
 
-// AppMiddleware defines the behavior required from an Hyperlane application middleware.
+// AppMiddleware defines the behavior required from a Hyperlane application middleware.
 type AppMiddleware interface {
 	util.HyperlaneApp
 }
@@ -23,7 +23,7 @@ type Middleware struct {
 
 func New(inner util.HyperlaneApp, hook HandleHook) (*Middleware, error) {
 	if inner == nil {
-		return nil, errors.New("inner Hyperlane application cannot be nil")
+		return nil, errors.New("underlying Hyperlane application cannot be nil")
 	}
 	if hook == nil {
 		return nil, errors.New("hook cannot be nil")
@@ -35,17 +35,17 @@ func New(inner util.HyperlaneApp, hook HandleHook) (*Middleware, error) {
 	}, nil
 }
 
-// Exists dispatches the request to the underlying wrapped Hyperlane application.
+// Exists dispatches the request to the underlying Hyperlane application.
 func (m *Middleware) Exists(ctx context.Context, recipient util.HexAddress) (bool, error) {
 	return m.HyperlaneApp.Exists(ctx, recipient)
 }
 
-// ReceiverIsmId dispatches the request to the underlying wrapped Hyperlane application.
+// ReceiverIsmId dispatches the request to the underlying Hyperlane application.
 func (m *Middleware) ReceiverIsmId(ctx context.Context, recipient util.HexAddress) (*util.HexAddress, error) {
 	return m.HyperlaneApp.ReceiverIsmId(ctx, recipient)
 }
 
-// Handle allows to execute middleware hooks before and after the underlying wrapped application.
+// Handle allows to execute middleware hooks before and after the underlying application.
 func (m *Middleware) Handle(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
 	err := m.hook.PreHandle(ctx, mailboxID, message)
 	if err != nil {

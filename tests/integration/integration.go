@@ -41,7 +41,9 @@ func NewCleanChainAtTime(startTime int64, suiteOpts ...SuiteOpt) *KeeperTestSuit
 	for _, opt := range suiteOpts {
 		opt(&s)
 	}
+
 	s.setupApp(startTime)
+
 	return &s
 }
 

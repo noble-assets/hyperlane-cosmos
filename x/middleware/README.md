@@ -1,20 +1,20 @@
 # Middleware
 
 This package contains a middleware implementation for a generic `HyperlaneApp`.
-The middleware allows to hook
-before and after the execution of the application's `Handle` method.
+Middleware allows integrators to add custom logic
+before and after the execution of an application's `Handle` method.
 
 ## Usage
 
-To wrap n Hyperlane application with a middleware, two components are required:
+To wrap a Hyperlane application with middleware, two components are required:
 
 - The Hyperlane core keeper.
 - A Hyperlane application, like Warp.
 
 Once the Cosmos SDK application has been built,
 it is possible to build and register the middleware.
-Assuming we want to provide hook functionalities
-around the Warp application for the collateral token, we can do as follow.
+Assuming we want to provide hook functionalities around the Warp application for collateral tokens,
+we can do the following.
 
 Import the required types:
 
@@ -31,7 +31,7 @@ import (
 ```
 
 Now we have to create a concrete value implementing the `HandleHook` interface. It is possible to
-use the simple hook type already provided in the package:
+use the simple hook type already provided:
 
 ```go
 hook := middleware.NewHandleHook(
@@ -50,7 +50,7 @@ For more complex applications, a custom type can be created.
 It is also possible to use another Cosmos SDK module as middleware,
 as long as it implements the required methods.
 At this point, it is possible to create the middleware. In the example below,
-we are going to create two wrapped middlewares around the warp application:
+we are going to create two wrapped middlewares around the Warp application:
 
 ```go
 warpKeeper := &warpkeeper.Keeper{}

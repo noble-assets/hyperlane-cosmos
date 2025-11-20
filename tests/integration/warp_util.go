@@ -13,11 +13,11 @@ import (
 	"github.com/bcp-innovations/hyperlane-cosmos/x/middleware"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/gogoproto/proto"
 
 	"github.com/bcp-innovations/hyperlane-cosmos/util"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/keeper"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
-	"github.com/cosmos/gogoproto/proto"
 
 	. "github.com/onsi/gomega"
 )
@@ -32,7 +32,7 @@ func (suite *KeeperTestSuite) postBuildOpts() simapp.PostBuildOpts {
 }
 
 // setupWarpApps returns a post application build configuration handler to
-// register the warp applications on the hyperlane core. If middleware hooks
+// register the Warp applications on the Hyperlane core. If middleware hooks
 // have been specified in the suite, they are used to wrap the warp keeper.
 func (suite *KeeperTestSuite) setupWarpApps() simapp.PostBuildOpt {
 	// If no custom hooks, use default registration
