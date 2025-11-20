@@ -53,7 +53,7 @@ func (suite *KeeperTestSuite) setupWarpApps() simapp.PostBuildOpt {
 			app, ok := warpAppsMap[tokenType]
 			Expect(ok).To(BeTrue(), fmt.Sprintf("expected warp app for token type %s to be found", tokenType))
 
-			appMiddleware, err := middleware.NewMiddleware(app, hook)
+			appMiddleware, err := middleware.New(app, hook)
 			Expect(err).To(BeNil())
 
 			warpAppsMap[tokenType] = appMiddleware

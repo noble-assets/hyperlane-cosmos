@@ -51,7 +51,7 @@ var _ = Describe("middleware.go", Ordered, func() {
 
 	BeforeEach(func() {
 		keeper = MockKeeper{}
-		hook := middleware.NewHandleHook(
+		hook := middleware.NewHook(
 			middleware.WithPreHandleFn(keeper.HandlePre),
 			middleware.WithPostHandleFn(keeper.HandlePost),
 		)

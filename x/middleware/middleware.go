@@ -21,7 +21,7 @@ type Middleware struct {
 	hook HandleHook
 }
 
-func NewMiddleware(inner util.HyperlaneApp, hook HandleHook) (*Middleware, error) {
+func New(inner util.HyperlaneApp, hook HandleHook) (*Middleware, error) {
 	if inner == nil {
 		return nil, errors.New("inner Hyperlane application cannot be nil")
 	}
@@ -47,7 +47,7 @@ func (m *Middleware) ReceiverIsmId(ctx context.Context, recipient util.HexAddres
 
 // Handle allows to execute middleware hooks before and after the underlying wrapped application.
 func (m *Middleware) Handle(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
-	err := m.hook.PreHandleHook(ctx, mailboxID, message)
+	err := m.hook.PreHandle(ctx, mailboxID, message)
 	if err != nil {
 		return fmt.Errorf("pre-handle hook failed: %w", err)
 	}
@@ -57,7 +57,7 @@ func (m *Middleware) Handle(ctx context.Context, mailboxID util.HexAddress, mess
 		return fmt.Errorf("handler failed: %w", err)
 	}
 
-	err = m.hook.PostHandleHook(ctx, mailboxID, message)
+	err = m.hook.PostHandle(ctx, mailboxID, message)
 	if err != nil {
 		return fmt.Errorf("post-handle hook failed: %w", err)
 	}
