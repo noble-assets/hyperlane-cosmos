@@ -27,22 +27,21 @@ import (
 	corekeeper "github.com/bcp-innovations/hyperlane-cosmos/x/core/keeper"
 	warp "github.com/bcp-innovations/hyperlane-cosmos/x/warp"
 	warpkeeper "github.com/bcp-innovations/hyperlane-cosmos/x/warp/keeper"
-	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/middleware"
+  "github.com/bcp-innovations/hyperlane-cosmos/x/middleware"
 	warptypes "github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
 )
 ```
 
-Now we have to create a concrete type implementing the `HandleHookI` interface. It is possible to
+Now we have to create a concrete value implementing the `HandleHook` interface. It is possible to
 use the simple hook type already provided in the package:
 
 ```go
-
 	hook := middleware.NewHandleHook(
 		middleware.WithPostHandleFn(func(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
 			// DO whatever
 			return nil
 		}),
-		middleware.WithPreHandleHookFn(func(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
+		middleware.WithPreHandleFn(func(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
 			// DO whatever
 			return nil
 		}),
@@ -59,8 +58,14 @@ we are going to create two wrapped middlewares around the warp application:
 	warpKeeper := &warpkeeper.Keeper{}
 	coreKeeper := &corekeeper.Keeper{}
 
-	middlewareInternal := middleware.NewMiddleware(warpKeeper, hook)
-	middlewareExternal := middleware.NewMiddleware(middlewareInternal, hook)
+	middlewareInternal, err := middleware.NewMiddleware(warpKeeper, hook)
+	if err != nil {
+		// handle error
+	}
+	middlewareExternal, err := middleware.NewMiddleware(middlewareInternal, hook)
+	if err != nil {
+		// handle error
+	}
 ```
 
 The only thing left to do, is to register the application in the core Hyperlane keeper:
