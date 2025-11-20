@@ -14,6 +14,8 @@ type HandleHook interface {
 	PostHandleHook(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error
 }
 
+var _ HandleHook = &HookHandle{}
+
 type HookHandle struct {
 	// preHandleHook is the behavior expected from a type that hook BEFORE executing
 	// the Hyperlane application Handle method.

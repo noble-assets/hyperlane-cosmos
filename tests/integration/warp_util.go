@@ -1,6 +1,8 @@
 package integration
 
 import (
+	"fmt"
+
 	"cosmossdk.io/math"
 
 	"github.com/bcp-innovations/hyperlane-cosmos/tests/simapp"
@@ -49,7 +51,7 @@ func (suite *KeeperTestSuite) setupWarpApps() simapp.PostBuildOpt {
 		// Wrap app with custom middleware if hooks are provided.
 		for tokenType, hook := range suite.HandleHooks {
 			app, ok := warpAppsMap[tokenType]
-			Expect(ok).To(BeTrue())
+			Expect(ok).To(BeTrue(), fmt.Sprintf("expected warp app for token type %s to be found", tokenType))
 
 			appMiddleware, err := middleware.NewMiddleware(app, hook)
 			Expect(err).To(BeNil())
@@ -67,7 +69,6 @@ func (suite *KeeperTestSuite) setupWarpApps() simapp.PostBuildOpt {
 
 		app.RegisterWarpApps(warpApps...)
 	}
-
 }
 
 func createIgp(s *KeeperTestSuite, creator string) util.HexAddress {

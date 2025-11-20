@@ -6,10 +6,10 @@ before and after the execution of the application's `Handle` method.
 
 ## Usage
 
-To wrap an Hyperlane application with a middleware, two components are required:
+To wrap n Hyperlane application with a middleware, two components are required:
 
 - The Hyperlane core keeper.
-- An Hyperlane application, like Warp.
+- A Hyperlane application, like Warp.
 
 Once the Cosmos SDK application has been built,
 it is possible to build and register the middleware.
@@ -56,7 +56,6 @@ At this point, it is possible to create the middleware. In the example below,
 we are going to create two wrapped middlewares around the warp application:
 
 ```go
-
 	warpKeeper := &warpkeeper.Keeper{}
 	coreKeeper := &corekeeper.Keeper{}
 

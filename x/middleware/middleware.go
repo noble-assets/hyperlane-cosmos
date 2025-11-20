@@ -35,12 +35,12 @@ func NewMiddleware(inner util.HyperlaneApp, hook HandleHook) (*Middleware, error
 	}, nil
 }
 
-// Exists dispatch the request to the underlying wrapped Hyperlane application.
+// Exists dispatches the request to the underlying wrapped Hyperlane application.
 func (m *Middleware) Exists(ctx context.Context, recipient util.HexAddress) (bool, error) {
 	return m.HyperlaneApp.Exists(ctx, recipient)
 }
 
-// ReceiverIsmId dispatch the request to the underlying wrapped Hyperlane application.
+// ReceiverIsmId dispatches the request to the underlying wrapped Hyperlane application.
 func (m *Middleware) ReceiverIsmId(ctx context.Context, recipient util.HexAddress) (*util.HexAddress, error) {
 	return m.HyperlaneApp.ReceiverIsmId(ctx, recipient)
 }

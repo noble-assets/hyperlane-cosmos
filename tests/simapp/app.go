@@ -144,8 +144,10 @@ func AppConfig(hyperlaneModuleConfigs []*appv1alpha1.ModuleConfig) depinject.Con
 	)
 }
 
-type PostBuildOpt func(*App)
-type PostBuildOpts = []PostBuildOpt
+type (
+	PostBuildOpt  func(*App)
+	PostBuildOpts = []PostBuildOpt
+)
 
 func DefaultPostBuildOpts() PostBuildOpts {
 	return []PostBuildOpt{
