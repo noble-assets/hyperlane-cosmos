@@ -26,7 +26,11 @@ type Hook struct {
 	postHandleFn HandleFn
 }
 
-func (h *Hook) PreHandle(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
+func (h *Hook) PreHandle(
+	ctx context.Context,
+	mailboxID util.HexAddress,
+	message util.HyperlaneMessage,
+) error {
 	if h.preHandleFn != nil {
 		return h.preHandleFn(ctx, mailboxID, message)
 	}
@@ -34,7 +38,11 @@ func (h *Hook) PreHandle(ctx context.Context, mailboxID util.HexAddress, message
 	return nil
 }
 
-func (h *Hook) PostHandle(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
+func (h *Hook) PostHandle(
+	ctx context.Context,
+	mailboxID util.HexAddress,
+	message util.HyperlaneMessage,
+) error {
 	if h.postHandleFn != nil {
 		return h.postHandleFn(ctx, mailboxID, message)
 	}

@@ -41,12 +41,19 @@ func (m *Middleware) Exists(ctx context.Context, recipient util.HexAddress) (boo
 }
 
 // ReceiverIsmId dispatches the request to the underlying Hyperlane application.
-func (m *Middleware) ReceiverIsmId(ctx context.Context, recipient util.HexAddress) (*util.HexAddress, error) {
+func (m *Middleware) ReceiverIsmId(
+	ctx context.Context,
+	recipient util.HexAddress,
+) (*util.HexAddress, error) {
 	return m.HyperlaneApp.ReceiverIsmId(ctx, recipient)
 }
 
 // Handle allows to execute middleware hooks before and after the underlying application.
-func (m *Middleware) Handle(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
+func (m *Middleware) Handle(
+	ctx context.Context,
+	mailboxID util.HexAddress,
+	message util.HyperlaneMessage,
+) error {
 	err := m.hook.PreHandle(ctx, mailboxID, message)
 	if err != nil {
 		return fmt.Errorf("pre-handle hook failed: %w", err)

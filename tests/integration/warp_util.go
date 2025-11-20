@@ -4,22 +4,21 @@ import (
 	"fmt"
 
 	"cosmossdk.io/math"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/gogoproto/proto"
+
+	. "github.com/onsi/gomega"
 
 	"github.com/bcp-innovations/hyperlane-cosmos/tests/simapp"
+	"github.com/bcp-innovations/hyperlane-cosmos/util"
 	ismTypes "github.com/bcp-innovations/hyperlane-cosmos/x/core/01_interchain_security/types"
 	pdTypes "github.com/bcp-innovations/hyperlane-cosmos/x/core/02_post_dispatch/types"
 	coreKeeper "github.com/bcp-innovations/hyperlane-cosmos/x/core/keeper"
 	coreTypes "github.com/bcp-innovations/hyperlane-cosmos/x/core/types"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/middleware"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/gogoproto/proto"
-
-	"github.com/bcp-innovations/hyperlane-cosmos/util"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/keeper"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
-
-	. "github.com/onsi/gomega"
 )
 
 var denom = "acoin"
@@ -51,7 +50,9 @@ func (suite *KeeperTestSuite) setupWarpApps() simapp.PostBuildOpt {
 		// Wrap app with custom middleware if hooks are provided.
 		for tokenType, hook := range suite.HandleHooks {
 			app, ok := warpAppsMap[tokenType]
-			Expect(ok).To(BeTrue(), fmt.Sprintf("expected warp app for token type %s to be found", tokenType))
+			Expect(
+				ok,
+			).To(BeTrue(), fmt.Sprintf("expected warp app for token type %s to be found", tokenType))
 
 			appMiddleware, err := middleware.New(app, hook)
 			Expect(err).To(BeNil())
@@ -85,7 +86,11 @@ func createIgp(s *KeeperTestSuite, creator string) util.HexAddress {
 	return response.Id
 }
 
-func createMerkleHook(s *KeeperTestSuite, creator string, mailboxId util.HexAddress) util.HexAddress {
+func createMerkleHook(
+	s *KeeperTestSuite,
+	creator string,
+	mailboxId util.HexAddress,
+) util.HexAddress {
 	res, err := s.RunTx(&pdTypes.MsgCreateMerkleTreeHook{
 		Owner:     creator,
 		MailboxId: mailboxId,
@@ -99,7 +104,12 @@ func createMerkleHook(s *KeeperTestSuite, creator string, mailboxId util.HexAddr
 	return response.Id
 }
 
-func CreateValidMailbox(s *KeeperTestSuite, creator string, ism string, destinationDomain uint32) (util.HexAddress, util.HexAddress, util.HexAddress) {
+func CreateValidMailbox(
+	s *KeeperTestSuite,
+	creator string,
+	ism string,
+	destinationDomain uint32,
+) (util.HexAddress, util.HexAddress, util.HexAddress) {
 	var ismId util.HexAddress
 	switch ism {
 	case "noop":
@@ -175,7 +185,12 @@ func CreateNoopIsm(s *KeeperTestSuite, creator string) util.HexAddress {
 	return response.Id
 }
 
-func setDestinationGasConfig(s *KeeperTestSuite, creator string, igpId util.HexAddress, domain uint32) error {
+func setDestinationGasConfig(
+	s *KeeperTestSuite,
+	creator string,
+	igpId util.HexAddress,
+	domain uint32,
+) error {
 	_, err := s.RunTx(&pdTypes.MsgSetDestinationGasConfig{
 		Owner: creator,
 		IgpId: igpId,
@@ -192,7 +207,11 @@ func setDestinationGasConfig(s *KeeperTestSuite, creator string, igpId util.HexA
 	return err
 }
 
-func verifyNewMailbox(s *KeeperTestSuite, res *sdk.Result, creator, igpId, ismId string) util.HexAddress {
+func verifyNewMailbox(
+	s *KeeperTestSuite,
+	res *sdk.Result,
+	creator, igpId, ismId string,
+) util.HexAddress {
 	var response coreTypes.MsgCreateMailboxResponse
 	err := proto.Unmarshal(res.MsgResponses[0].Value, &response)
 	Expect(err).To(BeNil())
@@ -210,7 +229,8 @@ func verifyNewMailbox(s *KeeperTestSuite, res *sdk.Result, creator, igpId, ismId
 		Expect(mailbox.DefaultHook).To(BeNil())
 	}
 
-	mailboxes, err := coreKeeper.NewQueryServerImpl(s.App().HyperlaneKeeper).Mailboxes(s.Ctx(), &coreTypes.QueryMailboxesRequest{})
+	mailboxes, err := coreKeeper.NewQueryServerImpl(s.App().HyperlaneKeeper).
+		Mailboxes(s.Ctx(), &coreTypes.QueryMailboxesRequest{})
 	Expect(err).To(BeNil())
 	Expect(mailboxes.Mailboxes).To(HaveLen(1))
 	Expect(mailboxes.Mailboxes[0].Owner).To(Equal(creator))
@@ -218,7 +238,12 @@ func verifyNewMailbox(s *KeeperTestSuite, res *sdk.Result, creator, igpId, ismId
 	return mailboxId
 }
 
-func CreateToken(s *KeeperTestSuite, remoteRouter *types.RemoteRouter, owner, _ string, tokenType types.HypTokenType) (util.HexAddress, util.HexAddress, util.HexAddress, util.HexAddress) {
+func CreateToken(
+	s *KeeperTestSuite,
+	remoteRouter *types.RemoteRouter,
+	owner, _ string,
+	tokenType types.HypTokenType,
+) (util.HexAddress, util.HexAddress, util.HexAddress, util.HexAddress) {
 	mailboxId, igpId, ismId := CreateValidMailbox(s, owner, "noop", 1)
 
 	var tokenId util.HexAddress
@@ -266,14 +291,16 @@ func CreateToken(s *KeeperTestSuite, remoteRouter *types.RemoteRouter, owner, _ 
 	})
 	Expect(err).To(BeNil())
 
-	tokens, err := keeper.NewQueryServerImpl(s.App().WarpKeeper).Tokens(s.Ctx(), &types.QueryTokensRequest{})
+	tokens, err := keeper.NewQueryServerImpl(s.App().WarpKeeper).
+		Tokens(s.Ctx(), &types.QueryTokensRequest{})
 	Expect(err).To(BeNil())
 	Expect(tokens.Tokens).To(HaveLen(1))
 	Expect(tokens.Tokens[0].Owner).To(Equal(owner))
 
-	routers, err := keeper.NewQueryServerImpl(s.App().WarpKeeper).RemoteRouters(s.Ctx(), &types.QueryRemoteRoutersRequest{
-		Id: tokenId.String(),
-	})
+	routers, err := keeper.NewQueryServerImpl(s.App().WarpKeeper).
+		RemoteRouters(s.Ctx(), &types.QueryRemoteRoutersRequest{
+			Id: tokenId.String(),
+		})
 	Expect(err).To(BeNil())
 
 	if remoteRouter != nil {

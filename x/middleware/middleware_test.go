@@ -6,15 +6,16 @@ import (
 	"math/big"
 
 	"cosmossdk.io/math"
+	sdk "github.com/cosmos/cosmos-sdk/types"
+
+	. "github.com/onsi/ginkgo/v2"
+	. "github.com/onsi/gomega"
 
 	i "github.com/bcp-innovations/hyperlane-cosmos/tests/integration"
 	"github.com/bcp-innovations/hyperlane-cosmos/util"
 	coreTypes "github.com/bcp-innovations/hyperlane-cosmos/x/core/types"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/middleware"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	. "github.com/onsi/ginkgo/v2"
-	. "github.com/onsi/gomega"
 )
 
 type MockKeeper struct {
@@ -24,7 +25,11 @@ type MockKeeper struct {
 	NumPostCall   int
 }
 
-func (k *MockKeeper) HandlePre(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
+func (k *MockKeeper) HandlePre(
+	ctx context.Context,
+	mailboxID util.HexAddress,
+	message util.HyperlaneMessage,
+) error {
 	k.NumPreCall++
 	if k.IsFailingPre {
 		return errors.New("failing in pre handle")
@@ -33,7 +38,11 @@ func (k *MockKeeper) HandlePre(ctx context.Context, mailboxID util.HexAddress, m
 	return nil
 }
 
-func (k *MockKeeper) HandlePost(ctx context.Context, mailboxID util.HexAddress, message util.HyperlaneMessage) error {
+func (k *MockKeeper) HandlePost(
+	ctx context.Context,
+	mailboxID util.HexAddress,
+	message util.HyperlaneMessage,
+) error {
 	k.NumPostCall++
 	if k.IsFailingPost {
 		return errors.New("failing in post handle")
@@ -79,7 +88,9 @@ var _ = Describe("middleware.go", Ordered, func() {
 				keeper.IsFailingPre = false
 				keeper.IsFailingPost = false
 				// Arrange
-				receiverAddress, _ := util.DecodeHexAddress("0xd7194459d45619d04a5a0f9e78dc9594a0f37fd6da8382fe12ddda6f2f46d647")
+				receiverAddress, _ := util.DecodeHexAddress(
+					"0xd7194459d45619d04a5a0f9e78dc9594a0f37fd6da8382fe12ddda6f2f46d647",
+				)
 				remoteRouter := types.RemoteRouter{
 					ReceiverDomain:   1,
 					ReceiverContract: "0x934b867052ca9c65e33362112f35fb548f8732c2fe45f07b9c591958e865def0",
@@ -90,7 +101,13 @@ var _ = Describe("middleware.go", Ordered, func() {
 				maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
 				var tokenId, igpId util.HexAddress
-				tokenId, mailboxId, igpId, _ = i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+				tokenId, mailboxId, igpId, _ = i.CreateToken(
+					s,
+					&remoteRouter,
+					owner.Address,
+					sender.Address,
+					types.HYP_TOKEN_TYPE_COLLATERAL,
+				)
 				err := s.MintBaseCoins(sender.Address, 1_000_000)
 				Expect(err).To(BeNil())
 
@@ -108,7 +125,9 @@ var _ = Describe("middleware.go", Ordered, func() {
 				})
 				Expect(err).To(BeNil())
 
-				Expect(s.App().BankKeeper.GetBalance(s.Ctx(), sender.AccAddress, denom).Amount).To(Equal(senderBalance.Amount.Sub(amount.Add(maxFee.Amount))))
+				Expect(
+					s.App().BankKeeper.GetBalance(s.Ctx(), sender.AccAddress, denom).Amount,
+				).To(Equal(senderBalance.Amount.Sub(amount.Add(maxFee.Amount))))
 
 				receiverContract, err := util.DecodeHexAddress(remoteRouter.ReceiverContract)
 				Expect(err).To(BeNil())
@@ -162,7 +181,9 @@ var _ = Describe("middleware.go", Ordered, func() {
 			keeper.IsFailingPost = false
 
 			It("MsgProcessMessage succeeds", func() {
-				receiverAddress, _ := util.DecodeHexAddress("0xd7194459d45619d04a5a0f9e78dc9594a0f37fd6da8382fe12ddda6f2f46d647")
+				receiverAddress, _ := util.DecodeHexAddress(
+					"0xd7194459d45619d04a5a0f9e78dc9594a0f37fd6da8382fe12ddda6f2f46d647",
+				)
 				remoteRouter := types.RemoteRouter{
 					ReceiverDomain:   1,
 					ReceiverContract: "0x934b867052ca9c65e33362112f35fb548f8732c2fe45f07b9c591958e865def0",
@@ -172,7 +193,13 @@ var _ = Describe("middleware.go", Ordered, func() {
 				amount := math.NewInt(100)
 				maxFee := sdk.NewCoin(denom, math.NewInt(250000))
 
-				tokenId, mailboxId, igpId, _ := i.CreateToken(s, &remoteRouter, owner.Address, sender.Address, types.HYP_TOKEN_TYPE_COLLATERAL)
+				tokenId, mailboxId, igpId, _ := i.CreateToken(
+					s,
+					&remoteRouter,
+					owner.Address,
+					sender.Address,
+					types.HYP_TOKEN_TYPE_COLLATERAL,
+				)
 				err := s.MintBaseCoins(sender.Address, 1_000_000)
 				Expect(err).To(BeNil())
 
@@ -190,7 +217,9 @@ var _ = Describe("middleware.go", Ordered, func() {
 				})
 				Expect(err).To(BeNil())
 
-				Expect(s.App().BankKeeper.GetBalance(s.Ctx(), sender.AccAddress, denom).Amount).To(Equal(senderBalance.Amount.Sub(amount.Add(maxFee.Amount))))
+				Expect(
+					s.App().BankKeeper.GetBalance(s.Ctx(), sender.AccAddress, denom).Amount,
+				).To(Equal(senderBalance.Amount.Sub(amount.Add(maxFee.Amount))))
 
 				receiverContract, err := util.DecodeHexAddress(remoteRouter.ReceiverContract)
 				Expect(err).To(BeNil())
@@ -221,7 +250,9 @@ var _ = Describe("middleware.go", Ordered, func() {
 				})
 
 				Expect(err).To(BeNil())
-				Expect(s.App().BankKeeper.GetBalance(s.Ctx(), sender.AccAddress, denom).Amount).To(Equal(senderBalance.Amount.Add(amount)))
+				Expect(
+					s.App().BankKeeper.GetBalance(s.Ctx(), sender.AccAddress, denom).Amount,
+				).To(Equal(senderBalance.Amount.Add(amount)))
 
 				Expect(keeper.NumPreCall).To(Equal(1))
 				Expect(keeper.NumPostCall).To(Equal(1))
