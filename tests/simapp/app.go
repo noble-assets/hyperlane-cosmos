@@ -144,6 +144,17 @@ func AppConfig(hyperlaneModuleConfigs []*appv1alpha1.ModuleConfig) depinject.Con
 	)
 }
 
+type (
+	PostBuildOpt  func(*App)
+	PostBuildOpts = []PostBuildOpt
+)
+
+func DefaultPostBuildOpts() PostBuildOpts {
+	return []PostBuildOpt{
+		RegisterDefaultWarpAppsOpt(),
+	}
+}
+
 // NewMiniApp returns a reference to an initialized App.
 func NewMiniApp(
 	logger log.Logger,
@@ -153,7 +164,7 @@ func NewMiniApp(
 	appOpts servertypes.AppOptions,
 	baseAppOptions ...func(*baseapp.BaseApp),
 ) (*App, error) {
-	return NewMiniAppWithCustomConfig(logger, db, traceStore, loadLatest, appOpts, DefaultHyperlaneModuleConfigs([]int32{1, 2}), baseAppOptions...)
+	return NewMiniAppWithCustomConfig(logger, db, traceStore, loadLatest, appOpts, DefaultPostBuildOpts(), DefaultHyperlaneModuleConfigs([]int32{1, 2}), baseAppOptions...)
 }
 
 // NewMiniAppWithCustomConfig returns a reference to an initialized App.
@@ -163,6 +174,7 @@ func NewMiniAppWithCustomConfig(
 	traceStore io.Writer,
 	loadLatest bool,
 	appOpts servertypes.AppOptions,
+	postBuildOpts []PostBuildOpt,
 	hyperlaneConfig []*appv1alpha1.ModuleConfig,
 	baseAppOptions ...func(*baseapp.BaseApp),
 ) (*App, error) {
@@ -197,6 +209,10 @@ func NewMiniAppWithCustomConfig(
 	}
 
 	app.App = appBuilder.Build(db, traceStore, baseAppOptions...)
+
+	for _, postBuildOpt := range postBuildOpts {
+		postBuildOpt(app)
+	}
 
 	// register streaming services
 	if err := app.RegisterStreamingServices(appOpts, app.kvStoreKeys()); err != nil {

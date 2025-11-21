@@ -7,6 +7,7 @@ import (
 	"cosmossdk.io/core/store"
 	"cosmossdk.io/depinject"
 	modulev1 "github.com/bcp-innovations/hyperlane-cosmos/api/warp/module/v1"
+	"github.com/bcp-innovations/hyperlane-cosmos/util"
 	coreKeeper "github.com/bcp-innovations/hyperlane-cosmos/x/core/keeper"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/keeper"
 	"github.com/bcp-innovations/hyperlane-cosmos/x/warp/types"
@@ -64,4 +65,23 @@ func ProvideModule(in ModuleInputs) ModuleOutputs {
 // AutoCLIOptions implements the autocli.HasAutoCLIConfig interface.
 func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 	return &autocliv1.ModuleOptions{}
+}
+
+type WarpApp struct {
+	TokenType types.HypTokenType
+	Handler   util.HyperlaneApp
+}
+
+func DefaultWarpApps(k *keeper.Keeper) []WarpApp {
+	collateralApp := WarpApp{
+		TokenType: types.HYP_TOKEN_TYPE_COLLATERAL,
+		Handler:   k,
+	}
+
+	syntheticApp := WarpApp{
+		TokenType: types.HYP_TOKEN_TYPE_SYNTHETIC,
+		Handler:   k,
+	}
+
+	return []WarpApp{collateralApp, syntheticApp}
 }
